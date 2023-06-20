@@ -129,4 +129,16 @@ class SupplierModel
         $this->db->bind(':optie', $data['optiepakket'], PDO::PARAM_INT);
         return $this->db->execute();
     }
+
+    public function deleteSupplier($id)
+    {
+        try {
+            $this->db->query('DELETE FROM `supplier` WHERE `id` = :id');
+            $this->db->bind(':id', $id);
+            return $this->db->execute();
+        } catch (PDOException $e) {
+            echo "<h3 class='text-red'>Het verwijderen is niet gelukt, probeer het opnieuw.</h3>";
+            header("Refresh:2; url=" . URLROOT . "/supplier/index");
+        }
+    }
 }

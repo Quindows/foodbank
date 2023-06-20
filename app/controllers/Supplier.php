@@ -31,6 +31,8 @@ class Supplier extends controller
                     <td>$value->email</td>
                     <td>$value->phonenumber</td>
                     <td>$value->nextdelivery</td>
+                    <td><a href='../supplier/deleteSupplier/$value->id' class='btn-outlined-red'>Verwijderen</a></td>
+
                 </tr>";
             }
         }
@@ -60,5 +62,11 @@ class Supplier extends controller
 
             $this->view('supplier/createSupplier');
         }
+    }
+
+    public function deleteSupplier($id)
+    {
+        $this->model->deleteSupplier($id);
+        header("Location: " . URLROOT . "/supplier/index");
     }
 }

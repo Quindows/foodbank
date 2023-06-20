@@ -43,7 +43,7 @@ class CustomerModel
                                     con.Phonenumber 
                         from customer as cus 
                         Inner join contact as con 
-                        on cus.Id = con.CustomerId
+                        on cus.Id = con.Id
                         WHERE cus.Id = :Id");
 
         $this->db->bind(':Id', $Id, PDO::PARAM_INT);
@@ -147,7 +147,7 @@ class CustomerModel
             $this->db->query("DELETE FROM contact where Id =:Id ");
 
             $this->db->bind(':Id', $Id, PDO::PARAM_INT);   
-             
+
             $this->db->execute();
 
             $this->db->query("DELETE FROM customer where Id =:Id ");

@@ -1,5 +1,4 @@
-<?php require APPROOT . '/views/includes/navbar.php' ?>
-
+<?php require APPROOT . '/views/includes/navbar.php';?>
 <div class="grid">
     <!-- Page Title -->
     <h3 class="col-12-lg"><?= $data['title'] ?></h3>
@@ -22,7 +21,7 @@
         <input class="mb-2" type="text" name="AmountOfBabies" value="<?= $data["row"]->AmountOfBabies; ?>">
         <label for="">Extra wish:</label>
         <input class="mb-2" type="text" name="ExtraWish" value="<?= $data["row"]->ExtraWish; ?>">
-        
+
         <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->Id; ?>">
         <br>
         <input type="Submit">

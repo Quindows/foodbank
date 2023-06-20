@@ -28,6 +28,7 @@ class Allergy extends controller
             }
         }
 
+        
         // array voor alle data om mee te sturen naar de view
         $data = [
             'rows' => $rows

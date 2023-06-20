@@ -22,8 +22,8 @@ class Allergy extends controller
                 $rows .= "
                 <tr>
                     <td>$value->Name</td>
-                    <td><a href='../allergy/updateAllergy/$value->Id' class='btn-outlined-primary'>Wijzigen</a></td>
-                    <td><a href='../allergy/deleteAllergy/$value->Id' class='btn-outlined-red'>Verwijderen</a></td>
+                    <td><a href='../allergy/updateAllergy/$value->Id' class='btn-outlined-primary'>Update</a></td>
+                    <td><a href='../allergy/deleteAllergy/$value->Id' class='btn-outlined-red'>Delete</a></td>
                 </tr>";
             }
         }

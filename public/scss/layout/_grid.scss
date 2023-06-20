@@ -1,0 +1,93 @@
+@use 'sass:math';
+
+$grid-columns: 12;
+
+// base layout classes
+
+
+.grid{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto !important;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    gap: $base-gap;
+    grid-template-rows: auto;
+}
+
+$span-utilities: (
+    "grid-column":(
+        "prefix": "grid-col",
+        "values": (
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+        ),
+    ),
+);
+
+// col classes
+@include xs {
+    @for $i from 1 through $grid-columns{
+        .col-#{$i}-xs{
+            grid-column: span math.div($i * $grid-columns, $grid-columns);
+        }
+        .row-#{$i}-xs{
+            grid-row: span math.div($i * $grid-columns, $grid-columns);
+        }
+    }
+}
+
+@include sm {
+    @for $i from 1 through $grid-columns{
+        .col-#{$i}-sm{
+            grid-column: span math.div($i * $grid-columns, $grid-columns);
+        }
+        .row-#{$i}-sm{
+            grid-row: span math.div($i * $grid-columns, $grid-columns);
+        }
+    }
+}
+
+@include md {
+    @for $i from 1 through $grid-columns{
+        .col-#{$i}-md{
+            grid-column: span math.div($i * $grid-columns, $grid-columns);
+        }
+        .row-#{$i}-md{
+            grid-row: span math.div($i * $grid-columns, $grid-columns);
+        }
+    }
+}
+
+@include lg {
+    @for $i from 1 through $grid-columns{
+        .col-#{$i}-lg{
+            grid-column: span math.div($i * $grid-columns, $grid-columns);
+        }
+        .row-#{$i}-lg{
+            grid-row: span math.div($i * $grid-columns, $grid-columns);
+        }
+    }
+}
+
+@include xl {
+    @for $i from 1 through $grid-columns{
+        .col-#{$i}-xl{
+            grid-column: span math.div($i * $grid-columns, $grid-columns);
+        }
+        .row-#{$i}-xl{
+            grid-row: span math.div($i * $grid-columns, $grid-columns);
+        }
+    }
+}

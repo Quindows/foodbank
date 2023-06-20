@@ -10,7 +10,9 @@
 <body>
     <div class="grid">
         <div class="container col-12-lg jc-sb mb-4">
-            <div><h3>Homepage</h3></div>
+            <div>
+                <h3>Homepage</h3>
+            </div>
             <div>
                 <a class="pr-2" href="../customer/index.php">Customer</a>
                 <a class="pr-2" href="../supplier/index.php">Supplier</a>
@@ -19,4 +21,5 @@
             </div>
         </div>
     </div>
+
 </html>

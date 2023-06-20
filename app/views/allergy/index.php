@@ -15,5 +15,7 @@
         <br>
         <!-- Button to create contact -->
         <a class="btn-grey" href="/allergy/addAllergy">Add Allergy</a>
+        <br>
+        <a class="btn-grey" href="/customerAllergy/index">View Customers</a>
     </div>
 </div>

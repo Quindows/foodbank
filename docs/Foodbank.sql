@@ -11,7 +11,7 @@ create table `supplier`(
     `Address`		VARCHAR(50)		NOT NULL,
 	`Email`			VARCHAR(50)		NOT NULL,
     `Phonenumber`	VARCHAR(10)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -22,7 +22,9 @@ INSERT INTO `supplier`(
 VALUES 
 	('DHL', 'Daltonlaan 400', 'DHL@support.nl', '0611223344'),
     ('Sligro', 'Benschop 31', 'Sligro@support.nl', '0613223344'),
-    ('Makro', 'Ijselstein 2', 'Makro@support.nl', '0612223344');
+    ('Makro', 'IJselstein 2', 'Makro@support.nl', '0612223344'),
+    ('UPS', 'Freekweg 2', 'Ups@support.nl', '0626275828'),
+    ('Etail', 'Trilbaan 52', 'Etail@support.nl', 0628492018);
     
 -- Delivery
 drop table if exists `delivery`;
@@ -30,12 +32,21 @@ create table `delivery`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `Status`		VARCHAR(50)		NOT NULL,
     `TimeOfDeparture`DATETIME       NOT NULL,
-	`TimeOfArrival`	DATETIME		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`TimeOfArrival`	DATETIME		NULL,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;
+
+INSERT INTO `delivery`(
+	`Status`, `TimeOfDeparture`, `TimeOfArrival`)
+VALUES 
+	('Arrived', '2023-06-15 19:30:00', '2023-06-19 12:14:30'),
+    ('Arrived', '2023-06-17 09:45:00', '2023-06-20 14:26:45'),
+    ('Arrived', '2023-06-17 10:30:00', '2023-06-20 15:48:23'),
+    ('Departed', '2023-06-19 15:30:00', null),
+    ('Planned', '2023-06-21 10:30:00', null);
 
 -- Delivery and Supplier table
 drop table if exists `deliverySupplier`;
@@ -43,7 +54,7 @@ create table `deliverySupplier`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
 	`SupplierId`	INT,
     `DeliveryId`	INT,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -51,7 +62,16 @@ create table `deliverySupplier`(
 	CONSTRAINT DeliverySupplier_Delivery FOREIGN KEY (`DeliveryId`) REFERENCES `delivery`(`Id`)
 ) ENGINE=INNODB;
 
-
+INSERT INTO `deliverySupplier`(
+	`SupplierId`, `DeliveryId`)
+VALUES 
+	('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5');
+    
+    
 -- Person
 drop table if exists `person`;
 create table `person`(
@@ -59,7 +79,7 @@ create table `person`(
     `Callname`		VARCHAR(50)		NOT NULL,
     `Infix`			VARCHAR(10)		NULL,
 	`LastName`		VARCHAR(50)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -69,9 +89,10 @@ INSERT INTO `person`(
 	`Callname`, `Infix`, `lastname`)
 VALUES 
 	('Levi', null, 'tas'),
-    ('Daan', 'de', 'Bruijn'),
+    ('Daniel', null, 'Bruijn'),
     ('Claudia', null, 'Nijholt'),
-    ('Quintin', null, 'Blume');
+    ('Quintin', null, 'Blume'),
+    ('Bruce', null, 'Lee');
 
 -- User
 drop table if exists `user`;
@@ -79,7 +100,7 @@ create table `user` (
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `PersonId`		INT,
     `Password`		VARCHAR(10)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -92,14 +113,15 @@ VALUES
 	('1', 'test1'),
     ('2', 'test2'),
     ('3', 'test3'),
-    ('4', 'test4');
+    ('4', 'test4'),
+    ('5', 'test5');
 
 -- Role
 drop table if exists `role`;
 create table `role`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `Name`			VARCHAR(50)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -118,7 +140,7 @@ create table `userRole`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `UserId`		INT,
     `RoleId`		INT,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -132,7 +154,8 @@ VALUES
 	(1, 1),
     (2, 2),
     (3, 3),
-    (4, 3);
+    (4, 3),
+    (5, 3);
 
 
 -- Allergy
@@ -140,11 +163,20 @@ drop table if exists `allergy`;
 create table `allergy`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `Name`			VARCHAR(50)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;
+
+INSERT INTO `allergy`(
+	`Name`)
+VALUES 
+	('Gluten'),
+    ('Peanut'),
+    ('Shellfish'),
+    ('Hazelnut'),
+    ('Lactose');
 
 -- Customer
 drop table if exists `customer`;
@@ -155,11 +187,21 @@ create table `customer`(
     `AmountOfAdults`INT(2)			NOT NULL,
     `AmountOfKids`	INT(2)			NULL,
     `AmountOfBabies`INT(2)			NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+    `ExtraWish`VARCHAR(100)			NULL,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;
+
+INSERT INTO `customer`(
+	`FamilyName`, `Address`, `AmountOfAdults`, `AmountOfKids`, `AmountOfBabies`, `ExtraWish`)
+VALUES 
+	('Bruijn', 'Hertogweg 27', '3', null, null, 'Geen komkommer'),
+    ('Tas', 'Baanweg 104', '4', '1', null, 'Geen perzik'),
+    ('Blume', 'Prins HendrikLaan 420', '2', '1', null, null),
+    ('Nijholt', 'Werkweg 271', '4', '1', null, 'Geen groente'),
+    ('Lee', 'Leerbaanweg 82', '1', '2', '1', null);
 
 -- Contact
 drop table if exists `contact`;
@@ -168,19 +210,28 @@ create table `contact`(
     `CustomerId`	INT,
 	`Email`			VARCHAR(50)		NOT NULL,
     `Phonenumber`	VARCHAR(10)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	CONSTRAINT Contact_Customer FOREIGN KEY (`CustomerId`) REFERENCES `customer`(`Id`)
 ) ENGINE=INNODB;
 
+INSERT INTO `contact`(
+	`CustomerId`, `Email`, `Phonenumber`)
+VALUES 
+	('1', 'bruijn@family.com', '0646274919'),
+    ('2', 'tas@family.org', '0628482917'),
+    ('3', 'blume@family.nl', '0638482716'),
+    ('4', 'nijholt@family.dom', '0628482616'),
+    ('5', 'lee@family.hiya', '0628482716');
+
 -- Product
 drop table if exists `product`;
 create table `product`(
  	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `ProductName`	VARCHAR(50)		NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -208,7 +259,7 @@ create table `foodPackage`(
     `Product3Id`	INT,
 	`AssemblyDate`	DATE 			NOT NULL,
     `DistributionDate`DATE			NOT NULL,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -217,6 +268,15 @@ create table `foodPackage`(
 	CONSTRAINT FoodPackage_Product3 FOREIGN KEY (`Product3Id`) REFERENCES `product`(`Id`)
 ) ENGINE=INNODB;
 
+INSERT INTO `foodPackage`(
+	`Product1Id`, `Product2Id`, `Product3Id`, `AssemblyDate`, `DistributionDate`)
+VALUES 
+	('2', '3', '6', '2023-06-19', '2023-06-20'),
+    ('1', '4', '7', '2023-06-20', '2023-06-21'),
+    ('4', '5', '6', '2023-06-22', '2023-06-23'),
+    ('2', '5', '7', '2023-06-23', '2023-06-24'),
+    ('4', 5, '6', '2023-06-23', '2023-06-23');
+
 -- CustomerAllergyFoodpackege
 drop table if exists `customerAllergyFoodpackege`;
 create table `customerAllergyFoodpackege`(
@@ -224,7 +284,7 @@ create table `customerAllergyFoodpackege`(
     `FoodPackageId`	INT,
     `CustomerId`	INT,
     `AllergyId` 	INT,
-	`IsActive` 		TINYINT(1) 		NOT NULL 			DEFAULT 1,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -233,3 +293,9 @@ create table `customerAllergyFoodpackege`(
 	CONSTRAINT customerAllergyFoodpackege_Allergy FOREIGN KEY (`AllergyId`) REFERENCES `allergy`(`Id`)
 ) ENGINE=INNODB;
 
+INSERT INTO `customerAllergyFoodpackege`(
+	`FoodPackageId`, `CustomerId`, `AllergyId`)
+VALUES 
+	('2', '1', '1'),
+    ('5', '2', '2'),
+    ('1', '4', '4');

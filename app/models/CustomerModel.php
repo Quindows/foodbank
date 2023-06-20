@@ -119,12 +119,10 @@ class CustomerModel
             $this->db->execute();
     
             //Score query
-            $this->db->query("UPDATE contact as con
-                            Inner join customer as cus on con.CustomerId = cus.Id 
-                                SET con.Email = :Email,
-                                    con.Phonenumber = :Phonenumber,
-    
-                                WHERE cus.Id = :Id");
+            $this->db->query("UPDATE contact
+                                SET Email = :Email,
+                                    Phonenumber = :Phonenumber
+                                WHERE Id = :Id");
     
             $this->db->bind(':Id', $post['Id'], PDO::PARAM_INT);
             $this->db->bind(':Email', $post['Email'], PDO::PARAM_STR);

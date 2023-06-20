@@ -100,8 +100,8 @@ class Customer extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
             $this->CustomerModel->updateCustomer($_POST);
-
             header("Location:" . URLROOT . "/customer/index");
           } else {
 

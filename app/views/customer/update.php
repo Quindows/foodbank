@@ -4,7 +4,7 @@
     <h3 class="col-12-lg"><?= $data['title'] ?></h3>
 
     <!-- Update Customer Form -->
-    <form action="">
+    <form action="" method="POST">
         <label for="">FamilyName:</label>
         <input class="mb-2" type="text" name="FamilyName" value="<?= $data["row"]->FamilyName; ?>" required>
         <label for="">Address:</label>
@@ -12,7 +12,7 @@
         <label for="">Email:</label>
         <input class="mb-2" type="text" name="Email" value="<?= $data["row"]->Email; ?>" required>
         <label for="">Phonenumber:</label>
-        <input class="mb-2" type="text" name="PhoneNumber" value="<?= $data["row"]->Phonenumber; ?>" required>
+        <input class="mb-2" type="text" name="Phonenumber" value="<?= $data["row"]->Phonenumber; ?>" required>
         <label for="">Amount of adults:</label>
         <input class="mb-2" type="text" name="AmountOfAdults" value="<?= $data["row"]->AmountOfAdults; ?>">
         <label for="">Amounts of kids:</label>
@@ -22,8 +22,8 @@
         <label for="">Extra wish:</label>
         <input class="mb-2" type="text" name="ExtraWish" value="<?= $data["row"]->ExtraWish; ?>">
 
-        <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->Id; ?>">
+        <input class="mb-2" type="hidden" name="Id" value="<?= $data["row"]->Id; ?>">
         <br>
-        <input type="Submit">
+        <input type="Submit" value="Change">
     </form>
 </div>

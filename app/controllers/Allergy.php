@@ -36,5 +36,19 @@ class Allergy extends controller
         // redirect naar de view
         $this->view('allergy/index', $data);
     }
-}
 
+    public function addAllergy()
+    {
+        $data = [
+            'title' => 'Score Toevoegen'
+        ];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $this->model->addAllergy($_POST);
+            header("Location: " . URLROOT . "allergy/index");
+        } else {
+            $this->view('allergy/addAllergy', $data);
+        }
+    }
+}

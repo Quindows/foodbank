@@ -37,15 +37,23 @@ class ComposerAutoloaderInit1facb7040b61780973d84d7d88660a56
                 $loader->set($namespace, $path);
             }
 
+<<<<<<< HEAD
             $map = require __DIR__ . '/autoload_psr4.php';
             foreach ($map as $namespace => $path) {
                 $loader->setPsr4($namespace, $path);
             }
+=======
+        $filesToLoad = \Composer\Autoload\ComposerStaticInit1facb7040b61780973d84d7d88660a56::$files;
+        $requireFile = static function ($fileIdentifier, $file) {
+            if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
+                $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
+>>>>>>> 0eca2e2ba6795fcca7a6993411accf29a4bc0add
 
             $classMap = require __DIR__ . '/autoload_classmap.php';
             if ($classMap) {
                 $loader->addClassMap($classMap);
             }
+<<<<<<< HEAD
         }
 
         $loader->register(true);
@@ -57,6 +65,11 @@ class ComposerAutoloaderInit1facb7040b61780973d84d7d88660a56
         }
         foreach ($includeFiles as $fileIdentifier => $file) {
             composerRequire1facb7040b61780973d84d7d88660a56($fileIdentifier, $file);
+=======
+        };
+        foreach ($filesToLoad as $fileIdentifier => $file) {
+            ($requireFile)($fileIdentifier, $file);
+>>>>>>> 0eca2e2ba6795fcca7a6993411accf29a4bc0add
         }
 
         return $loader;

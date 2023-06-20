@@ -42,9 +42,6 @@ namespace Composer\Autoload;
  */
 class ClassLoader
 {
-    /** @var \Closure(string):void */
-    private static $includeFile;
-
     /** @var ?string */
     private $vendorDir;
 
@@ -109,7 +106,6 @@ class ClassLoader
     public function __construct($vendorDir = null)
     {
         $this->vendorDir = $vendorDir;
-        self::initializeIncludeClosure();
     }
 
     /**
@@ -429,7 +425,11 @@ class ClassLoader
     public function loadClass($class)
     {
         if ($file = $this->findFile($class)) {
+<<<<<<< HEAD
+            includeFile($file);
+=======
             (self::$includeFile)($file);
+>>>>>>> 0eca2e2ba6795fcca7a6993411accf29a4bc0add
 
             return true;
         }
@@ -559,7 +559,22 @@ class ClassLoader
 
         return false;
     }
+}
 
+<<<<<<< HEAD
+/**
+ * Scope isolated include.
+ *
+ * Prevents access to $this/self from included files.
+ *
+ * @param  string $file
+ * @return void
+ * @private
+ */
+function includeFile($file)
+{
+    include $file;
+=======
     private static function initializeIncludeClosure(): void
     {
         if (self::$includeFile !== null) {
@@ -578,4 +593,5 @@ class ClassLoader
             include $file;
         };
     }
+>>>>>>> 0eca2e2ba6795fcca7a6993411accf29a4bc0add
 }

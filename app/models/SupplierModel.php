@@ -87,6 +87,39 @@ class SupplierModel
         }
     }
 
+
+    // Creates a new Supplier
+    public function createSupplier($post)
+    {
+        $this->db->query("INSERT INTO `Supplier` (companyname 
+                                             ,address
+                                             ,name
+                                             ,email
+                                             ,phonenumber
+                                             ,isActive 
+                                             ,dateCreated)
+                         VALUES              (:companyname 
+                                             ,:address
+                                             ,:name
+                                             ,:email
+                                             ,:phonenumber
+                                             ,1
+                                             ,:dateCreated)
+                           ;");
+
+        // Binds the filled in information with the database fields
+        $this->db->bind(':companyname', $post["companyName"], PDO::PARAM_STR);
+        $this->db->bind(':address', $post["address"], PDO::PARAM_STR);
+        $this->db->bind(':name', $post["contactName"], PDO::PARAM_STR);
+        $this->db->bind(':email', $post["email"], PDO::PARAM_STR);
+        $this->db->bind(':phonenumber', $post["phoneNumber"], PDO::PARAM_STR);
+        $this->db->bind(':dateCreated', date('Y-m-d H:i:s'), PDO::PARAM_STR);
+
+
+        // Executes the query
+        return $this->db->execute();
+    }
+
     public function updateSupplier($data, $id)
     {
         $this->db->query('UPDATE reservering

@@ -7,9 +7,9 @@ var_dump($data['row']) ?>
 
         <!-- Score Form-->
         <form action="" method="POST">
-            <input class="mb-2" type="text" name="name" value="<?= $data["row"]->Name; ?>" required>
+            <input class="mb-2" type="text" name="name" value="" required>
             <br>
-            <input class="mb-2" type="hidden" name="id" value="<?= $data['row']->id; ?>">
+            <input class="mb-2" type="hidden" name="id" value="">
             <br>
             <input class="btn-outlined-green" type="submit" value="Change">
         </form>

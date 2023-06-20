@@ -41,7 +41,7 @@ class Customer extends Controller
     public function addCustomer()
     {
         $data = [   "notification" => "",
-                    'title' => 'Overview Customers',]; 
+                    'title' => 'Add Customers',]; 
  
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
              try{
@@ -97,23 +97,50 @@ class Customer extends Controller
 
     public function updateCustomer($Id = null)
     {
+        
+        $row = $this->CustomerModel->getCustomerById($Id);
+        
+        $data = [   
+            "notification" => "",
+            'title' => 'Edit Customer',
+            'row' => $row];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            try{
+                // filtert voor sql injecties
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+
+                // VALIDATIE VAN DE INPUT
+                $data = $this->validateCreate($data,$_POST);
+                
+                if (strlen($data["notification"]) < 1) 
+                {
+                    // VOERT DE UPDATE UIT
+
+                    $this->CustomerModel->updateCustomer($_POST);
+
+                    // CHECKT OF HET IS GELUKT
+                    if ($result) {
+                        $data['notification'] = "Customer Edited!";
+                        header("Refresh: 3; url=" . URLROOT . "/customer/index");
+                    } else {
+                        $data['notification'] = "Something went wrong, Try again";
+                    }
+                }
+            } catch (PDOException $e) {
+ 
+                echo $e;
+                $data['notification'] = "Something went wrong, Try again";
+            }
         
-            $this->CustomerModel->updateCustomer($_POST);
             header("Location:" . URLROOT . "/customer/index");
           } else {
 
-            $row = $this->CustomerModel->getCustomerById($Id);
+            $data['notification'] = ' ';
 
-            $data = [
-              'title' => 'Edit Customer',
-              'row' => $row
-            ];
-
-            $this->view("customer/update", $data);
-          }
+        }
+        $this->view("customer/update", $data);
 
     }
 

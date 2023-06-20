@@ -82,7 +82,7 @@ class Customer extends Controller
     {
         if ($post['FamilyName'] == 50)
         {
-            $data['notification'] = "Thats too long, please try again with a shorter familyname";
+            $data['notification'] = "Thats too long, please try again with a shorter family name";
          }
         if ($post['Address'] == null)
         {
@@ -99,7 +99,7 @@ class Customer extends Controller
     {
         
         $row = $this->CustomerModel->getCustomerById($Id);
-        
+
         $data = [   
             "notification" => "",
             'title' => 'Edit Customer',

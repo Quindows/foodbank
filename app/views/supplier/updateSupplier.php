@@ -1,5 +1,4 @@
-<?= require(APPROOT . '/views/includes/Navbar.php');
-var_dump($data) ?>
+<?= require(APPROOT . '/views/includes/Navbar.php'); ?>
 
 <body>
     <div class="grid">

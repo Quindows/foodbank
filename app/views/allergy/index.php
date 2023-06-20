@@ -1,13 +1,19 @@
-<?= require(APPROOT . '/views/includes/Navbar.php'); ?>
+<!-- Navbar -->
+<?php require APPROOT . '/views/includes/navbar.php' ?>
 
-<table>
-    <thead>
-        <th>Name</th>
-    </thead>
-    <tbody>
-        <?= $data['rows']; ?>
-    </tbody>
-</table>
+<div class="grid">
+    <div class="container fd-c col-12-lg ai-fs">
+
+
+        <!-- Score Table -->
+        <h3 class="text-align-center col-12-lg">Overview allergies</h3>
+        <table class="table table-striped">
+            <tbody>
+                <?= $data['rows'] ?>
+            </tbody>
+        </table>
+        <br>
+        <!-- Button to create contact -->
+        <a class="btn-grey" href="/allergy/addAllergy">Add Allergy</a>
+    </div>
 </div>
-
-<?php require(APPROOT . '/views/includes/Footer.php'); ?>

@@ -25,7 +25,11 @@ VALUES
     ('Sligro', 'Benschop 31', 'Dave', 'Sligro@support.nl', '0613223344'),
     ('Makro', 'IJselstein 2', 'Marko', 'Makro@support.nl', '0612223344'),
     ('UPS', 'Freekweg 2', 'Russel', 'Ups@support.nl', '0626275828'),
+<<<<<<< HEAD
     ('Etail', 'Trilbaan 52', 'Simon', 'Etail@support.nl', 0628492018);
+=======
+    ('Etail', 'Trilbaan 52', 'Simon', 'Etail@support.nl', '0628492018');
+>>>>>>> a57d1f6f5cc3e21364319ee781a3f21300212794
     
 -- Delivery
 drop table if exists `delivery`;

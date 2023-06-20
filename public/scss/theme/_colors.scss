@@ -1,0 +1,90 @@
+@each $key, $val in $colors {
+    .text-#{$key}{
+        color: $val;
+    }
+
+    .text-hover-#{$key}{
+        &:hover{
+            color: $val;
+        }
+    }
+
+    .table-#{$key}{
+       background-color: $val;
+    }
+
+    .tr-border-#{$key}{
+        border-bottom: 3px solid $val !important;
+     }
+
+    .bg-#{$key}{
+        background-color: $val;
+    }
+
+    .bg-hover-#{$key}{
+        &:hover{
+            background-color: $val;
+        }
+    }
+
+    @if($val != black and $val != white){
+
+        // light variations
+
+        @for $i from 1 through 9{
+            .text-#{$key}-light-#{$i}{
+                color: mix(white, $val, $i * 10);
+            }
+            .text-hover-#{$key}-light-#{$i}{
+                &:hover{
+                    color: mix(white, $val, $i * 10);
+                }
+            }
+
+            .table-#{$key}-light-#{$i}{
+                background-color: mix(white, $val, $i * 10);
+            }
+            .tr-border-#{$key}-light-#{$i}{
+                border-bottom: 3px solid mix(white, $val, $i * 10) !important;
+             }
+
+            .bg-#{$key}-light-#{$i}{
+                background-color: mix(white, $val, $i * 10);
+            }
+            .bg-hover-#{$key}-light-#{$i}{
+                &:hover{
+                    background-color: mix(white, $val, $i * 10);
+                }
+            }
+        }
+    
+        //dark variations
+
+        @for $i from 1 through 9{
+            .text-#{$key}-dark-#{$i}{
+                color: mix(black, $val, $i * 10);
+            }
+            .text-hover-#{$key}-dark-#{$i}{
+                &:hover{
+                    color: mix(black, $val, $i * 10);
+                }
+            }
+
+            .table-#{$key}-dark-#{$i}{
+                background-color: mix(black, $val, $i * 10);
+            }
+            .tr-border-#{$key}-dark-#{$i}{
+                border-bottom: 3px solid mix(black, $val, $i * 10) !important;
+             }
+
+            .bg-#{$key}-dark-#{$i}{
+                background-color: mix(black, $val, $i * 10);
+            }
+            .bg-hover-#{$key}-dark-#{$i}{
+                &:hover{
+                    background-color: mix(black, $val, $i * 10);
+                }
+            }
+        }
+    }
+}

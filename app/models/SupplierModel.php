@@ -65,23 +65,20 @@ class SupplierModel
     {
         // error catcher
         try {
+            // Database query voor reservation overzicht
             $this->db->query('SELECT 
-                                res.Id as id,
-                                per.Voornaam as voornaam,
-                                per.Tussenvoegsel as tussenvoegsel,
-                                per.Achternaam as achternaam,
-                                res.Datum as datum,
-                                res.AantalVolwassen as volwassenen,
-                                res.AantalKinderen as kinderen,
-                                pak.Naam as pakket
-                            from supplier sup
-                            inner join deliverysupplier dsu
-                            on sup.Id = dsu.SupplierId
-                            inner join delivery del
-                            on del.Id = dsu.DeliveryId
-                            where res.PersoonId = :Id;');
+                            Id,
+                            CompanyName,
+                            Address,
+                            Name,
+                            Email,
+                            Phonenumber 
+                        from Supplier
+                        WHERE Id = :Id');
+
             $this->db->bind(':Id', $id, PDO::PARAM_INT);
-            return $this->db->resultSet();
+
+            return $this->db->single();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -120,13 +117,38 @@ class SupplierModel
         return $this->db->execute();
     }
 
-    public function updateSupplier($data, $id)
+    public function updateSupplier($data)
     {
-        $this->db->query('UPDATE reservering
-                        set PakketOptieId = :optie
-                        where Id = :id;');
-        $this->db->bind('id', $id, PDO::PARAM_INT);
-        $this->db->bind(':optie', $data['optiepakket'], PDO::PARAM_INT);
+        $this->db->query("UPDATE Supplier
+                        set     companyname = :companyname,
+                                address = :address,
+                                name = :name,
+                                email = :email,
+                                phonenumber = :phonenumber,
+                                dateUpdated = :dateUpdated
+
+                        where Id = :id;");
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind(':companyname', $data['companyName'], PDO::PARAM_STR);
+        $this->db->bind(':address', $data['address'], PDO::PARAM_STR);
+        $this->db->bind(':name', $data['contactName'], PDO::PARAM_STR);
+        $this->db->bind(':email', $data['email'], PDO::PARAM_STR);
+        $this->db->bind(':phonenumber', $data['phoneNumber'], PDO::PARAM_STR);
+        $this->db->bind(':dateUpdated', date('Y-m-d H:i:s'), PDO::PARAM_STR);
+
+
         return $this->db->execute();
+    }
+
+    public function deleteSupplier($id)
+    {
+        try {
+            $this->db->query('DELETE FROM `supplier` WHERE `id` = :id');
+            $this->db->bind(':id', $id);
+            return $this->db->execute();
+        } catch (PDOException $e) {
+            echo "<h3 class='text-red'>Het verwijderen is niet gelukt, probeer het opnieuw.</h3>";
+            header("Refresh:2; url=" . URLROOT . "/supplier/index");
+        }
     }
 }

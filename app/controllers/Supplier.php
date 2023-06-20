@@ -31,6 +31,8 @@ class Supplier extends controller
                     <td>$value->email</td>
                     <td>$value->phonenumber</td>
                     <td>$value->nextdelivery</td>
+                    <td><a href='../supplier/updateSupplier/$value->id' class='btn-outlined-green'>Edit</a></td>
+                    <td><a href='../supplier/deleteSupplier/$value->id' class='btn-outlined-red'>Delete</a></td>
                 </tr>";
             }
         }
@@ -60,5 +62,30 @@ class Supplier extends controller
 
             $this->view('supplier/createSupplier');
         }
+    }
+
+    public function updateSupplier($id = null)
+    {
+        // Checks if there is a POST method
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // It sanitizes the input
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $this->model->UpdateSupplier($_POST);
+            // Sends the user back to the order index page 
+            header("Location:" . URLROOT . "/supplier/index");
+        }
+        // Else it shows the page 
+        else {
+            $row = $this->model->getSupplierById($id);
+            $data = [
+                'row' => $row
+            ];
+            $this->view("supplier/updateSupplier", $data);
+        }
+    }
+    public function deleteSupplier($id)
+    {
+        $this->model->deleteSupplier($id);
+        header("Location: " . URLROOT . "/supplier/index");
     }
 }

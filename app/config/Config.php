@@ -8,8 +8,8 @@ define('DB_NAME', 'foodbank');
 //het padd naar de app map
 define('APPROOT', dirname(dirname(__FILE__)));
 
-    // de url van de website
-    define('URLROOT', 'http://voedselbank-maaskantje.local/');
+// de url van de website
+define('URLROOT', 'http://www.foodbank-maaskantje.local');
 
-    // naam van de website
-    define('SITENAME', 'voedselbank-maaskantje');
+// naam van de website
+define('SITENAME',  'voedselbank-maaskantje');

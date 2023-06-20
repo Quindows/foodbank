@@ -13,6 +13,7 @@
             <tbody>
                 <?= $data['rows']; ?>
             </tbody>
+            <a class="btn-grey" href="../supplier/createSupplier">Add supplier</a>
         </table>
     </div>
 </div>

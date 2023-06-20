@@ -37,3 +37,4 @@ class Allergy extends controller
         $this->view('allergy/index', $data);
     }
 }
+

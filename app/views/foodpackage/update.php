@@ -41,11 +41,11 @@
         </select>
 
 
-        <div class="col-12-lg">
-            <button type="submit" class="btn btn-warning w-100 p-3 mt-5">Create</button>
-        </div>
     </form>
-
+    
+    <div class="col-12-lg">
+        <button type="submit" class="btn btn-warning w-100 p-3 mt-5">Create</button>
+    </div>
 </div>
 
 

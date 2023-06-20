@@ -15,7 +15,10 @@
                 <?= $data['rows']; ?>
             </tbody>
         </table>
-        <a class='btn-outlined-primary' href="/foodpackage/create">Create</a>
+        <div class="col-12-lg">
+            <a class='btn-outlined-primary' href="/foodpackage/create">Create</a>
+
+        </div>
 </div>
 
 <?php require(APPROOT . '/views/includes/Footer.php');?>

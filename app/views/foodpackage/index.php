@@ -5,7 +5,6 @@
         <table class="table table-striped">
             <thead>
                 <th>Family name</th>
-                <th>Product id</th>
                 <th>Content</th>
                 <th>allergy</th>
                 <th>extras</th>
@@ -16,6 +15,7 @@
                 <?= $data['rows']; ?>
             </tbody>
         </table>
+        <a class='btn-outlined-primary' href="/foodpackage/create">Create</a>
 </div>
 
 <?php require(APPROOT . '/views/includes/Footer.php');?>

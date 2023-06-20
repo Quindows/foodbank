@@ -16,7 +16,6 @@ class FoodpackageModel
             $this->db->query('SELECT 
                     caf.Id              as id,
                     cus.FamilyName 		as familyName,
-                    foo.Id				as packageId,
                     pro.ProductName		as product,
                     alr.Name			as allergy,
                     cus.ExtraWish		as extra
@@ -30,13 +29,8 @@ class FoodpackageModel
             inner join allergy alr
                 on alr.Id = caf.AllergyId
             -- Product info 
-            inner join foodPackageProduct fpp
-                on fpp.Id = caf.FoodPackageProductId 
             inner join product pro
-                on pro.Id = fpp.ProductId
-            inner join foodPackage foo
-                on foo.Id = fpp.FoodPackageId
-            ;');
+                on pro.Id = caf.ProductId;');
             return $this->db->resultSet();
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -59,5 +53,31 @@ class FoodpackageModel
         {
             echo "Error: " . $e->getMessage();
         }
+    }
+
+    public function createFoodpackage($post){
+        // error catcher
+        try{
+            // Database query
+            $this->db->query("INSERT INTO customerAllergyFoodpackage
+            (
+                ProductId,
+                CustomerId,
+                AllergyId
+            )
+            VALUES
+            (
+                :productId,
+                :customerId,
+                :allergyId
+            );");
+            $this->db->bind(':productId', $post['Product'], PDO::PARAM_INT);
+            $this->db->bind(':customerId', $post['Family'], PDO::PARAM_INT);
+            $this->db->bind(':allergyId', $post['Allergy'], PDO::PARAM_INT);
+            
+            return $this->db->execute();
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+    }
     }
 }

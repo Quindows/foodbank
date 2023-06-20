@@ -250,64 +250,19 @@ VALUES
     ('Drum sticks'),
     ('Rissoto'),
     ('Lasagne');
-    
--- FoodPackage
-drop table if exists `foodPackage`;
-create table `foodPackage`(
-	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
-	`AssemblyDate`	DATE 			NOT NULL,
-    `DistributionDate`DATE			NOT NULL,
-	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
-    `Description` 	TEXT			NULL,
-    `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=INNODB;
-
-INSERT INTO `foodPackage`(
-	`AssemblyDate`, `DistributionDate`)
-VALUES 
-	('2023-06-19', '2023-06-20'),
-    ('2023-06-20', '2023-06-21'),
-    ('2023-06-22', '2023-06-23'),
-    ('2023-06-23', '2023-06-24'),
-    ('2023-06-23', '2023-06-23');
-
--- FoodPackage and Product
-drop table if exists `foodPackageProduct`;
-create table `foodPackageProduct`(
-	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
-	`FoodPackageId`	INT,
-    `ProductId`		INT,
-	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
-    `Description` 	TEXT			NULL,
-    `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT FoodpackegeProduct_Foodpackage FOREIGN KEY (`FoodPackageId`) REFERENCES `foodPackage`(`Id`),
-	CONSTRAINT FoodpackegeProduct_Product FOREIGN KEY (`ProductId`) REFERENCES `product`(`Id`)
-) ENGINE=INNODB;
-
-INSERT INTO `foodPackageProduct`(
-	`FoodPackageId`, `ProductId`)
-VALUES 
-	(1, 1),
-    (1, 2),
-    (1, 3),
-    (2, 3),
-    (2, 4),
-    (2, 5);
 
 -- CustomerAllergyFoodpackege
 drop table if exists `customerAllergyFoodpackage`;
 create table `customerAllergyFoodpackage`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
-    `FoodPackageProductId`	INT,
+    `ProductId`		INT,
     `CustomerId`	INT,
     `AllergyId` 	INT,
 	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	CONSTRAINT customerAllergyFoodpackege_FoodPackageProduct FOREIGN KEY (`FoodPackageProductId`) REFERENCES `foodPackageProduct`(`Id`),
+    CONSTRAINT customerAllergyFoodpackege_Product FOREIGN KEY (`productId`) REFERENCES `product`(`Id`),
 	CONSTRAINT customerAllergyFoodpackege_Customer FOREIGN KEY (`CustomerId`) REFERENCES `customer`(`Id`),
 	CONSTRAINT customerAllergyFoodpackege_Allergy FOREIGN KEY (`AllergyId`) REFERENCES `allergy`(`Id`)
 ) ENGINE=INNODB;

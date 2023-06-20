@@ -51,9 +51,9 @@ class SupplierModel
                                 sup.Phonenumber as phonenumber,  
                                 del.TimeOfDeparture as nextdelivery
                             from supplier sup
-                            inner join deliverysupplier dsu
+                            left join deliverysupplier dsu
                             on sup.Id = dsu.SupplierId
-                            inner join delivery del
+                            left join delivery del
                             on del.Id = dsu.DeliveryId');
             return $this->db->resultSet();
         } catch (PDOException $e) {

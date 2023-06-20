@@ -1,14 +1,15 @@
 <?= require(APPROOT . '/views/includes/Navbar.php');?>
 
 <div >
-    <h1>Create foodpackage</h1>
+    <h1>Update foodpackage</h1>
+    <?= var_dump($data['data']);  ?>
+    asdasdads
 
     <p></p>
-    <form action="<?= URLROOT; ?>foodpackage/create"  method="post" id="CreateForm">
+    <form action=""  method="post" id="UpdateForm">
     <p><?= $data['notification'] ?></p>
         <label for="Family">Choose a lastname:</label>
-        <select id="Family"  name="Family">
-            <option value=""></option>
+        <select id="Family" selected=3 name="Family">
             <option value=1>Bruijn</option>
             <option value=2>Tas</option>
             <option value=3>Blume</option>
@@ -18,7 +19,6 @@
 
         <label for="Allergy">Choose a allergy:</label>
         <select name="Allergy"  id="Allergy">
-            <option value=""></option>
             <option value=1>Gluten</option>
             <option value=2>Peanut</option>
             <option value=3>Shellfish</option>
@@ -28,8 +28,6 @@
 
         <label for="Product">Choose a product:</label>
         <select name="Product"  id="Product">
-        <option value=""></option>
-
             <option value=1>Cheese toast</option>
             <option value=2>Apple</option>
             <option value=3>Cereal</option>
@@ -42,7 +40,9 @@
 
         </select>
 
-        <button type="submit" class="btn btn-warning w-100 p-3 mt-5">Create</button>
+        <input type="hidden" id="" name="Id" value="<?= $data ?>">
+
+        <button type="submit" class="btn btn-warning w-100 p-3 mt-5">Update</button>
     </form>
 
 </div>

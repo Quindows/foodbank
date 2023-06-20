@@ -1,6 +1,6 @@
 <?= require(APPROOT . '/views/includes/Navbar.php');?>
 <div class="grid">
-    <h1 class="text-align-center col-12-lg">sdasd</h1>
+    <h1 class="text-align-center col-12-lg">Package overview</h1>
         
         <table class="table table-striped">
             <thead>

@@ -80,4 +80,31 @@ class FoodpackageModel
             echo "Error: " . $e->getMessage();
     }
     }
+
+    public function updateFoodpackage($post){
+        // error catcher
+        try{
+            // Database query
+            $this->db->query("INSERT INTO customerAllergyFoodpackage
+            (
+                ProductId,
+                CustomerId,
+                AllergyId
+            )
+            VALUES
+            (
+                :productId,
+                :customerId,
+                :allergyId
+            WHERE Id = :id);");
+            $this->db->bind(':productId', $post['Product'], PDO::PARAM_INT);
+            $this->db->bind(':customerId', $post['Family'], PDO::PARAM_INT);
+            $this->db->bind(':allergyId', $post['Allergy'], PDO::PARAM_INT);
+            $this->db->bind(':id', $post['Id'], PDO::PARAM_INT);
+            
+            return $this->db->execute();
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+    }
+    }
 }

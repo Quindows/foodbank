@@ -27,8 +27,8 @@ class Foodpackage extends controller
                     <td>$value->product</td>
                     <td>$value->allergy</td>
                     <td>$value->extra</td>
-                    <td><a href='../foodpackage/update/$value' class='btn-outlined-primary'>Edit</a></td>
-                        <td><a href='../foodpackage/delete/$value->id' class='btn-outlined-red'>Delete</a></td>
+                    <td><a href='../foodpackage/update/$value->id' class='btn-outlined-primary'>Edit</a></td>
+                    <td><a href='../foodpackage/delete/$value->id' class='btn-outlined-red'>Delete</a></td>
 
                 </tr>";
             }
@@ -85,14 +85,16 @@ class Foodpackage extends controller
                 }
             }
             else {
-                $data['notification'] = 'Maak een reservering!';
+                $data['notification'] = 'Create your package!';
             }
             $this->view('foodpackage/create', $data);
         }
 
         // UPDATE METHOD
         public function update(){
-            $data = ["notification" => ""]; 
+            $rows = $this->model('FoodpackageModel')->getFoodpackages();
+            $data = ["notification" => "",
+                    "data" => $rows]; 
     
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 try{
@@ -106,11 +108,11 @@ class Foodpackage extends controller
 
     
                         // VOERT DE CREATE UIT
-                        $result = $this->model('FoodpackageModel')->updateFoodpackage($_POST, 1);
+                        $result = $this->model('FoodpackageModel')->updateFoodpackage();
                         // CHECKT OF HET IS GELUKT
                         if ($result) {
                             
-                            $data['notification'] = "Reservatie gemaakt!";
+                            $data['notification'] = "Package updated!";
                             header("Refresh: 3; url=" . URLROOT . "foodpackage/index");
                         } else {
                              
@@ -124,16 +126,16 @@ class Foodpackage extends controller
                 }
             }
             else {
-                $data['notification'] = 'Maak een reservering!';
+                $data['notification'] = 'Update you package!';
             }
-            $this->view('foodpackage/create', $data);
+            $this->view('foodpackage/update', $data);
         }
 
         // VALIDATIE METHOD VOOR CREATE EN UPDATE
         public function validateFoodpackage($data, $post){
             foreach($post as $key => $value){
             if (empty($value)) {
-                $data['notification'] = "Niet alle velden zijn ingevuld.";
+                $data['notification'] = "Not all fields are filled in.";
                 return ($data);
             }
         }

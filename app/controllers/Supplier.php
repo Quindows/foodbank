@@ -52,9 +52,8 @@ class Supplier extends controller
             // It sanitizes the input
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $this->model->CreateSupplier($_POST);
-
             // Sends the user back to the order index page 
-            $this->view('supplier/index');
+            header("Location:" . URLROOT . "/supplier/index");
         }
         // Else it shows the page 
         else {

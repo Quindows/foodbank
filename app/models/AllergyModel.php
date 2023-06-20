@@ -1,23 +1,25 @@
 <?php
 
-class ReserveringModel{
+class AllergyModel
+{
 
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Database();
     }
 
-    public function getAllergy($id){
+    public function getAllergies()
+    {
         // error catcher
-        try{
+        try {
             // Database query voor reservation overzicht
             $this->db->query('SELECT 
-                            all.Name as Name
-                        from Allergy All');
-            $this->db->bind(':Id', $id, PDO::PARAM_INT);
+                            alle.Name as Name
+                        from Allergy alle');
             return $this->db->resultSet();
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }

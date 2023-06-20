@@ -1,11 +1,37 @@
 <?php
 
-class Allergy extends controller{
-    public function __construct(){
+class Allergy extends controller
+{
+    public function __construct()
+    {
         $this->model = $this->model('AllergyModel');
     }
 
-    public function index(){
-        
+    public function index()
+    {
+
+
+        $records = $this->model->getAllergies();
+        $rows = '';
+
+        if ($records == null) {
+            $rows .= '<h2>Geen allergieën</h2>';
+        } else {
+            foreach ($records as $value) {
+                // bouwt de tabel inhoud
+                $rows .= "
+                <tr>
+                    <td>$value->Name</td>
+                </tr>";
+            }
+        }
+
+        // array voor alle data om mee te sturen naar de view
+        $data = [
+            'rows' => $rows
+        ];
+
+        // redirect naar de view
+        $this->view('allergy/index', $data);
     }
 }

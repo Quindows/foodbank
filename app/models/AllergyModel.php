@@ -49,10 +49,10 @@ class AllergyModel
         // error catcher
         try {
             // addScore for Allergies
-            $this->db->query("INSERT INTO Allergy (Name
+            $this->db->query("INSERT INTO Allergy (name
                                                 ,isActive
                                                 ,dateCreated)
-                                        VALUES (:Name
+                                        VALUES (:name
                                                 ,:isActive
                                                 ,:dateCreated);");
 
@@ -99,7 +99,7 @@ class AllergyModel
             return $this->db->execute();
         } catch (PDOException $e) {
             echo "<h3 class='text-red'>Het verwijderen is niet gelukt, probeer het opnieuw.</h3>";
-            header("Refresh:2; url=" . URLROOT . "/score/index");
+            header("Refresh:2; url=" . URLROOT . "/allergy/index");
         }
     }
 }

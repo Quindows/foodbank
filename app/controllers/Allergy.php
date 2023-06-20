@@ -46,7 +46,7 @@ class Allergy extends controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $this->model->addAllergy($_POST);
-            header("Location: " . URLROOT . "allergy/index");
+            header("Location: " . URLROOT . "/allergy/index");
         } else {
             $this->view('allergy/addAllergy', $data);
         }
@@ -57,7 +57,7 @@ class Allergy extends controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $this->model->updateAllergy($_POST);
-            header("Location:" . URLROOT . "allergy/index");
+            header("Location:" . URLROOT . "/allergy/index");
         } else {
             $row = $this->model->getAllergiesById($id);
 
@@ -85,6 +85,6 @@ class Allergy extends controller
         ];
 
         $this->view('allergy/deleteAllergy', $data);
-        header("Refresh:2; url=" . URLROOT . "allergy/index");
+        header("Refresh:2; url=" . URLROOT . "/allergy/index");
     }
 }

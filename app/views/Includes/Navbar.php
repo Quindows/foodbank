@@ -14,7 +14,7 @@
             <div>
                 <a class="pr-2" href="../customer/index.php">Customer</a>
                 <a class="pr-2" href="../supplier/index.php">Supplier</a>
-                <a class="pr-2" href="../allergies/index.php">Allergies</a>
+                <a class="pr-2" href="../allergy/index.php">Allergy</a>
                 <a class="pr-2" href="../foodpackage/index.php">Foodpackage</a>
             </div>
         </div>

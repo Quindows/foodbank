@@ -3,7 +3,7 @@
     
     <div class="ai-c col-12-lg">
         <!-- Page Title -->
-        <h3><?= $data['title'] ?></h3>
+        <h3 class="text-align-center col-12-lg"><?= $data['title'] ?></h3>
         
             <!-- Customer Table -->
             <table class="table table-striped">
@@ -15,6 +15,7 @@
                     <th>AmountOfAdults</th>
                     <th>AmountOfKids</th>
                     <th>AmountOfBabies</th>
+                    <th>Extra Wish</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </thead>

@@ -31,14 +31,14 @@ class AllergyModel
         try {
             // Database query voor reservation overzicht
             $this->db->query('SELECT 
-                            id,
+                            Id,
                             Name
                         from Allergy
-                        WHERE id = :Id');
+                        WHERE Id = :Id');
 
             $this->db->bind(':Id', $id, PDO::PARAM_INT);
 
-            return $this->db->resultSet();
+            return $this->db->single();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

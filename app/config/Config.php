@@ -3,7 +3,7 @@
     define('DB_USER', 'root');
     define('DB_PASS', '');
     // naam van je database
-    define('DB_NAME', '...'); 
+    define('DB_NAME', 'foodbank'); 
 
     //het padd naar de app map
     define('APPROOT', dirname(dirname(__FILE__)));
@@ -13,5 +13,3 @@
 
     // naam van de website
     define('SITENAME', '...');
-    
-?>

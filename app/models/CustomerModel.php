@@ -80,7 +80,8 @@ class CustomerModel
             $this->db->execute();
 
             // Contact query
-            $this->db->query("INSERT INTO contact   (Email
+            $this->db->query("INSERT INTO contact   (
+                                                    Email
                                                     ,Phonenumber)
                                     Values          (:Email
                                                     ,:Phonenumber);");
@@ -108,7 +109,7 @@ class CustomerModel
                                 WHERE Id = :Id");
     
             $this->db->bind(':Id', $post['Id'], PDO::PARAM_INT);
-            $this->db->bind(':FamiliName', $post['FamilyName'], PDO::PARAM_STR);
+            $this->db->bind(':FamilyName', $post['FamilyName'], PDO::PARAM_STR);
             $this->db->bind(':Address', $post['Address'], PDO::PARAM_STR);
             $this->db->bind(':AmountOfAdults', $post['AmountOfAdults'], PDO::PARAM_INT);
             $this->db->bind(':AmountOfKids', $post['AmountOfKids'], PDO::PARAM_INT);
@@ -143,8 +144,14 @@ class CustomerModel
     public function deleteCustomer($Id)
     {
         try{
-            $this->db->query("DELETE FROM customer WHERE Id =:Id ");
-            $this->db->query("DELETE FROM contact WHERE CustomerId = :Id ");
+            $this->db->query("DELETE FROM contact where Id =:Id ");
+
+            $this->db->bind(':Id', $Id, PDO::PARAM_INT);   
+             
+            $this->db->execute();
+
+            $this->db->query("DELETE FROM customer where Id =:Id ");
+            // $this->db->query("DELETE FROM contact WHERE CustomerId = :Id ");
     
             $this->db->bind(':Id', $Id, PDO::PARAM_INT);    
     

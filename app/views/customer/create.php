@@ -15,11 +15,11 @@
         <label for="">Phonenumber:</label>
         <input class="mb-2" type="text" name="Phonenumber" placeholder="Enter your phonenumber" required>
         <label for="">Amount of adults:</label>
-        <input class="mb-2" type="number" name="AmountOfAdults" placeholder="Enter the amount of adults in you family" required>
+        <input class="mb-2" type="number" name="AmountOfAdults" placeholder="Enter the amount of adults in you family">
         <label for="">Amounts of kids:</label>
-        <input class="mb-2" type="number" name="AmountOfKids" placeholder="Enter the amount of kids in you family" required>
+        <input class="mb-2" type="number" name="AmountOfKids" placeholder="Enter the amount of kids in you family">
         <label for="">Amount of babies:</label>
-        <input class="mb-2" type="number" name="AmountOfBabies" placeholder="Enter the amount of babies in you family" required>
+        <input class="mb-2" type="number" name="AmountOfBabies" placeholder="Enter the amount of babies in you family">
         <label for="">Extra wish:</label>
         <input class="mb-2" type="text" name="ExtraWish" placeholder="Enter some Extra Wishes">
         <br>

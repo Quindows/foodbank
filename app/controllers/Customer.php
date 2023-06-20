@@ -118,11 +118,11 @@ class Customer extends Controller
     }
 
         public function deleteCustomer($Id){
-            if($this->CustomerModel->deleteCustomer($Id))
-            {
+            $this->CustomerModel->deleteCustomer($Id);
+            
             echo "het verwijderen is gelukt";
             header('location: ' . URLROOT . '/customer/index');
-            }
+            
         }
 }
 ?>

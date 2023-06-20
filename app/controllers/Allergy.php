@@ -69,6 +69,7 @@ class Allergy extends controller
             }
 
             $data = [
+                'title' => 'Change allergy',
                 'row' => $row
             ];
             $this->view("allergy/updateAllergy", $data);

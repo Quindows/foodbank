@@ -24,7 +24,7 @@ VALUES
     ('Sligro', 'Benschop 31', 'Sligro@support.nl', '0613223344'),
     ('Makro', 'IJselstein 2', 'Makro@support.nl', '0612223344'),
     ('UPS', 'Freekweg 2', 'Ups@support.nl', '0626275828'),
-    ('Etail', 'Trilbaan 52', 'Etail@support.nl', 0628492018);
+    ('Etail', 'Trilbaan 52', 'Etail@support.nl', '0628492018');
     
 -- Delivery
 drop table if exists `delivery`;

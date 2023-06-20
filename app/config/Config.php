@@ -12,4 +12,4 @@ define('APPROOT', dirname(dirname(__FILE__)));
     define('URLROOT', 'http://foodbank.local');
 
 // naam van de website
-define('SITENAME', 'voedselbank-maaskantje');
+define('SITENAME',  'voedselbank-maaskantje');

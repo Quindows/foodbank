@@ -9,7 +9,7 @@ define('DB_NAME', 'foodbank');
 define('APPROOT', dirname(dirname(__FILE__)));
 
 // de url van de website
-define('URLROOT', 'http://www.foodbank-maaskantje.local');
+define('URLROOT',  'http://www.foodbank-maaskantje.local');
 
 // naam van de website
 define('SITENAME',  'voedselbank-maaskantje');

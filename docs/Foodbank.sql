@@ -9,6 +9,7 @@ create table `supplier`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `CompanyName`	VARCHAR(50)		NOT NULL,
     `Address`		VARCHAR(50)		NOT NULL,
+    `Name`			VARCHAR(50)		NOT NULL,
 	`Email`			VARCHAR(50)		NOT NULL,
     `Phonenumber`	VARCHAR(10)		NOT NULL,
 	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
@@ -18,13 +19,13 @@ create table `supplier`(
 ) ENGINE=INNODB;
 
 INSERT INTO `supplier`(
-	`CompanyName`, `Address`, `Email`, `PhoneNumber`)
+	`CompanyName`, `Address`, `Name`, `Email`, `PhoneNumber`)
 VALUES 
-	('DHL', 'Daltonlaan 400', 'DHL@support.nl', '0611223344'),
-    ('Sligro', 'Benschop 31', 'Sligro@support.nl', '0613223344'),
-    ('Makro', 'IJselstein 2', 'Makro@support.nl', '0612223344'),
-    ('UPS', 'Freekweg 2', 'Ups@support.nl', '0626275828'),
-    ('Etail', 'Trilbaan 52', 'Etail@support.nl', '0628492018');
+	('DHL', 'Daltonlaan 400', 'Henk', 'DHL@support.nl', '0611223344'),
+    ('Sligro', 'Benschop 31', 'Dave', 'Sligro@support.nl', '0613223344'),
+    ('Makro', 'IJselstein 2', 'Marko', 'Makro@support.nl', '0612223344'),
+    ('UPS', 'Freekweg 2', 'Russel', 'Ups@support.nl', '0626275828'),
+    ('Etail', 'Trilbaan 52', 'Simon', 'Etail@support.nl', '0628492018');
     
 -- Delivery
 drop table if exists `delivery`;
@@ -278,8 +279,8 @@ VALUES
     ('4', 5, '6', '2023-06-23', '2023-06-23');
 
 -- CustomerAllergyFoodpackege
-drop table if exists `customerAllergyFoodpackege`;
-create table `customerAllergyFoodpackege`(
+drop table if exists `customerAllergyFoodpackage`;
+create table `customerAllergyFoodpackage`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
     `FoodPackageId`	INT,
     `CustomerId`	INT,
@@ -293,7 +294,7 @@ create table `customerAllergyFoodpackege`(
 	CONSTRAINT customerAllergyFoodpackege_Allergy FOREIGN KEY (`AllergyId`) REFERENCES `allergy`(`Id`)
 ) ENGINE=INNODB;
 
-INSERT INTO `customerAllergyFoodpackege`(
+INSERT INTO `customerAllergyFoodpackage`(
 	`FoodPackageId`, `CustomerId`, `AllergyId`)
 VALUES 
 	('2', '1', '1'),

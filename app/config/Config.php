@@ -9,9 +9,7 @@
     define('APPROOT', dirname(dirname(__FILE__)));
 
     // de url van de website
-    define('URLROOT', '...');
+    define('URLROOT', 'http://voedselbank-maaskantje.local/');
 
     // naam van de website
-    define('SITENAME', '...');
-    
-?>
+    define('SITENAME', 'voedselbank-maaskantje');

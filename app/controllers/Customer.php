@@ -95,6 +95,7 @@ class Customer extends Controller
         return($data);
     }  
 
+    
     public function updateCustomer($Id = null)
     {
         

@@ -61,4 +61,21 @@ class Supplier extends controller
             $this->view('supplier/createSupplier');
         }
     }
+
+    public function updateSupplier($id)
+    {
+        // Checks if there is a POST method
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // It sanitizes the input
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $this->model->CreateSupplier($_POST);
+            // Sends the user back to the order index page 
+            header("Location:" . URLROOT . "/supplier/index");
+        }
+        // Else it shows the page 
+        else {
+
+            $this->view('supplier/createSupplier');
+        }
+    }
 }

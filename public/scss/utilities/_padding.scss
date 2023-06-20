@@ -1,0 +1,79 @@
+@use 'sass:math';
+
+$padding-utilities: (
+    "padding":(
+        "prefix": "p",
+        "values": (
+            "0": 0,
+            "1": $base-padding,
+            "2": $base-padding * 2,
+            "3": $base-padding * 4,
+            "4": $base-padding * 6,
+            "5": $base-padding * 8,
+        ),
+    ),
+    "padding-left":(
+        "prefix": "pl",
+        "values": (
+            "0": 0,
+            "1": $base-padding,
+            "2": $base-padding * 2,
+            "3": $base-padding * 4,
+            "4": $base-padding * 6,
+            "5": $base-padding * 8,
+        ),
+    ),
+    "padding-top":(
+        "prefix": "pt",
+        "values": (
+            "0": 0,
+            "1": $base-padding,
+            "2": $base-padding * 2,
+            "3": $base-padding * 4,
+            "4": $base-padding * 6,
+            "5": $base-padding * 8,
+        ),
+    ),
+    "padding-right":(
+        "prefix": "pr",
+        "values": (
+            "0": 0,
+            "1": $base-padding,
+            "2": $base-padding * 2,
+            "3": $base-padding * 4,
+            "4": $base-padding * 6,
+            "5": $base-padding * 8,
+        ),
+    ),
+    "padding-bottom":(
+        "prefix": "pb",
+        "values": (
+            "0": 0,
+            "1": $base-padding,
+            "2": $base-padding * 2,
+            "3": $base-padding * 4,
+            "4": $base-padding * 6,
+            "5": $base-padding * 8,
+        ),
+    ),
+);
+
+// generate utility classes
+
+@each $property, $map in $padding-utilities{
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $key, $val in $values{
+        @if($key == "default"){
+            .#{$prefix}{
+                #{$property}: $val;
+            }
+        }
+        @else{
+            .#{$prefix}-#{$key}{
+                #{$property}:  $val;
+            }
+        }
+    }
+}

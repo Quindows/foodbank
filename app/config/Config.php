@@ -9,9 +9,9 @@
     define('APPROOT', dirname(dirname(__FILE__)));
 
     // de url van de website
-    define('URLROOT', '...');
+    define('URLROOT', 'http://foodbank.local/');
 
     // naam van de website
-    define('SITENAME', '...');
+    define('SITENAME', 'foodbank');
     
 ?>

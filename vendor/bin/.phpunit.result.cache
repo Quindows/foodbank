@@ -1,1 +1,1 @@
-{"version":1,"defects":{"LandingpagesTest::testAdd":5},"times":{"LandingpagesTest::testAdd":0.015,"LandingpagesTest::testAdd#0":0.005,"LandingpagesTest::testAdd#1":0,"LandingpagesTest::testAdd#2":0}}
+{"version":1,"defects":{"LandingpagesTest::testAdd":5},"times":{"LandingpagesTest::testAdd":0.015,"LandingpagesTest::testAdd#0":0.004,"LandingpagesTest::testAdd#1":0,"LandingpagesTest::testAdd#2":0}}

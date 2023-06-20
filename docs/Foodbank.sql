@@ -255,48 +255,66 @@ VALUES
 drop table if exists `foodPackage`;
 create table `foodPackage`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
-    `Product1Id`	INT,
-    `Product2Id`	INT,
-    `Product3Id`	INT,
 	`AssemblyDate`	DATE 			NOT NULL,
     `DistributionDate`DATE			NOT NULL,
 	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	CONSTRAINT FoodPackage_Product1 FOREIGN KEY (`Product1Id`) REFERENCES `product`(`Id`),
-	CONSTRAINT FoodPackage_Product2 FOREIGN KEY (`Product2Id`) REFERENCES `product`(`Id`),
-	CONSTRAINT FoodPackage_Product3 FOREIGN KEY (`Product3Id`) REFERENCES `product`(`Id`)
+    `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=INNODB;
 
 INSERT INTO `foodPackage`(
-	`Product1Id`, `Product2Id`, `Product3Id`, `AssemblyDate`, `DistributionDate`)
+	`AssemblyDate`, `DistributionDate`)
 VALUES 
-	('2', '3', '6', '2023-06-19', '2023-06-20'),
-    ('1', '4', '7', '2023-06-20', '2023-06-21'),
-    ('4', '5', '6', '2023-06-22', '2023-06-23'),
-    ('2', '5', '7', '2023-06-23', '2023-06-24'),
-    ('4', 5, '6', '2023-06-23', '2023-06-23');
+	('2023-06-19', '2023-06-20'),
+    ('2023-06-20', '2023-06-21'),
+    ('2023-06-22', '2023-06-23'),
+    ('2023-06-23', '2023-06-24'),
+    ('2023-06-23', '2023-06-23');
+
+-- FoodPackage and Product
+drop table if exists `foodPackageProduct`;
+create table `foodPackageProduct`(
+	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
+	`FoodPackageId`	INT,
+    `ProductId`		INT,
+	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
+    `Description` 	TEXT			NULL,
+    `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT FoodpackegeProduct_Foodpackage FOREIGN KEY (`FoodPackageId`) REFERENCES `foodPackage`(`Id`),
+	CONSTRAINT FoodpackegeProduct_Product FOREIGN KEY (`ProductId`) REFERENCES `product`(`Id`)
+) ENGINE=INNODB;
+
+INSERT INTO `foodPackageProduct`(
+	`FoodPackageId`, `ProductId`)
+VALUES 
+	(1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 3),
+    (2, 4),
+    (2, 5);
 
 -- CustomerAllergyFoodpackege
 drop table if exists `customerAllergyFoodpackage`;
 create table `customerAllergyFoodpackage`(
 	`Id`			INT				NOT NULL			AUTO_INCREMENT PRIMARY KEY,
-    `FoodPackageId`	INT,
+    `FoodPackageProductId`	INT,
     `CustomerId`	INT,
     `AllergyId` 	INT,
 	`IsActive` 		BIT(1) 		NOT NULL 			DEFAULT 1,
     `Description` 	TEXT			NULL,
     `DateCreated`	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `DateUpdated` 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	CONSTRAINT customerAllergyFoodpackege_FoodPackage FOREIGN KEY (`FoodPackageId`) REFERENCES `foodPackage`(`Id`),
+	CONSTRAINT customerAllergyFoodpackege_FoodPackageProduct FOREIGN KEY (`FoodPackageProductId`) REFERENCES `foodPackageProduct`(`Id`),
 	CONSTRAINT customerAllergyFoodpackege_Customer FOREIGN KEY (`CustomerId`) REFERENCES `customer`(`Id`),
 	CONSTRAINT customerAllergyFoodpackege_Allergy FOREIGN KEY (`AllergyId`) REFERENCES `allergy`(`Id`)
 ) ENGINE=INNODB;
 
 INSERT INTO `customerAllergyFoodpackage`(
-	`FoodPackageId`, `CustomerId`, `AllergyId`)
+	`FoodPackageProductId`, `CustomerId`, `AllergyId`)
 VALUES 
 	('2', '1', '1'),
-    ('5', '2', '2'),
+    ('3', '2', '2'),
     ('1', '4', '4');

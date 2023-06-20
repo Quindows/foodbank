@@ -19,7 +19,7 @@ class Supplier extends controller
         $naam = '';
         // Checkt of er Supplier zijn
         if ($records == null) {
-            $rows .= '<h2>Er staan nog geen leveranciers in de database.</h2>';
+            $rows .= '<h2>Er staan nog geen leveranciers in de database.</h2> ';
         } else {
             foreach ($records as $value) {
                 // Bouwt de tabel inhoud

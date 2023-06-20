@@ -7883,3 +7883,7 @@ footer div.footer div.media-links ion-icon {
   font-size: 32px;
   color: white;
 }
+
+.text-align-center {
+  text-align: center;
+}

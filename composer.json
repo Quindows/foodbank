@@ -11,5 +11,10 @@
         "files": [
             "app/config/config.php"
         ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.1.10"
+        }
     }
 }

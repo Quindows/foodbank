@@ -43,6 +43,36 @@ class VoedselPakketModel
         }
     }
 
+    public function getVoedselPakkettenById($id)
+    {
+
+        // error catcher
+        try {
+            $this->db->query('SELECT DISTINCT
+                                gez.Id as id,
+                                gez.Naam as naam,
+                                gez.Omschrijving as omschrijving,
+                                gez.TotaalAantalPersonen as totaalaantalpersonen,
+                                vdp.PakketNummer as pakketnummer,
+                                vdp.DatumSamenstelling as datumsamengesteld,
+                                vdp.DatumUitgifte as datumuitgifte,
+                                vdp.Status as status    
+
+                            from gezin gez
+                            inner join voedselpakket vdp
+                            on gez.Id = vdp.GezinId
+                            inner join productpervoedselpakket pvp
+                            on vdp.Id = pvp.VoedselpakketId
+                            where (gez.Id = :Id)
+                            ');
+            $this->db->bind(':Id', $id, PDO::PARAM_INT);
+
+            return $this->db->resultSet();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function getVoedselPakketten()
     {
         // error catcher
@@ -69,94 +99,26 @@ class VoedselPakketModel
         }
     }
 
-    public function getSupplierById($id)
+    public function updateStatus($data)
     {
-        // error catcher
-        try {
-            // Database query voor reservation overzicht
-            $this->db->query('SELECT 
-                            Id,
-                            CompanyName,
-                            Address,
-                            Name,
-                            Email,
-                            Phonenumber 
-                        from Supplier
-                        WHERE Id = :Id');
+        // $this->db->query("UPDATE Supplier
+        //                 set     companyname = :companyname,
+        //                         address = :address,
+        //                         name = :name,
+        //                         email = :email,
+        //                         phonenumber = :phonenumber,
+        //                         dateUpdated = :dateUpdated
 
-            $this->db->bind(':Id', $id, PDO::PARAM_INT);
-
-            return $this->db->single();
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
+        //                 where Id = :id;");
+        // $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        // $this->db->bind(':companyname', $data['companyName'], PDO::PARAM_STR);
+        // $this->db->bind(':address', $data['address'], PDO::PARAM_STR);
+        // $this->db->bind(':name', $data['contactName'], PDO::PARAM_STR);
+        // $this->db->bind(':email', $data['email'], PDO::PARAM_STR);
+        // $this->db->bind(':phonenumber', $data['phoneNumber'], PDO::PARAM_STR);
+        // $this->db->bind(':dateUpdated', date('Y-m-d H:i:s'), PDO::PARAM_STR);
 
 
-    // Creates a new Supplier
-    public function createSupplier($post)
-    {
-        $this->db->query("INSERT INTO `Supplier` (companyname 
-                                             ,address
-                                             ,name
-                                             ,email
-                                             ,phonenumber
-                                             ,isActive 
-                                             ,dateCreated)
-                         VALUES              (:companyname 
-                                             ,:address
-                                             ,:name
-                                             ,:email
-                                             ,:phonenumber
-                                             ,1
-                                             ,:dateCreated)
-                           ;");
-
-        // Binds the filled in information with the database fields
-        $this->db->bind(':companyname', $post["companyName"], PDO::PARAM_STR);
-        $this->db->bind(':address', $post["address"], PDO::PARAM_STR);
-        $this->db->bind(':name', $post["contactName"], PDO::PARAM_STR);
-        $this->db->bind(':email', $post["email"], PDO::PARAM_STR);
-        $this->db->bind(':phonenumber', $post["phoneNumber"], PDO::PARAM_STR);
-        $this->db->bind(':dateCreated', date('Y-m-d H:i:s'), PDO::PARAM_STR);
-
-
-        // Executes the query
-        return $this->db->execute();
-    }
-
-    public function updateSupplier($data)
-    {
-        $this->db->query("UPDATE Supplier
-                        set     companyname = :companyname,
-                                address = :address,
-                                name = :name,
-                                email = :email,
-                                phonenumber = :phonenumber,
-                                dateUpdated = :dateUpdated
-
-                        where Id = :id;");
-        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
-        $this->db->bind(':companyname', $data['companyName'], PDO::PARAM_STR);
-        $this->db->bind(':address', $data['address'], PDO::PARAM_STR);
-        $this->db->bind(':name', $data['contactName'], PDO::PARAM_STR);
-        $this->db->bind(':email', $data['email'], PDO::PARAM_STR);
-        $this->db->bind(':phonenumber', $data['phoneNumber'], PDO::PARAM_STR);
-        $this->db->bind(':dateUpdated', date('Y-m-d H:i:s'), PDO::PARAM_STR);
-
-
-        return $this->db->execute();
-    }
-
-    public function deleteSupplier($id)
-    {
-        try {
-            $this->db->query('DELETE FROM `supplier` WHERE `id` = :id');
-            $this->db->bind(':id', $id);
-            return $this->db->execute();
-        } catch (PDOException $e) {
-            echo "<h3 class='text-red'>Het verwijderen is niet gelukt, probeer het opnieuw.</h3>";
-            header("Refresh:2; url=" . URLROOT . "/supplier/index");
-        }
+        // return $this->db->execute();
     }
 }

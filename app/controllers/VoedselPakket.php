@@ -37,7 +37,7 @@ class VoedselPakket extends controller
                     <td>$value->kinderen</td>
                     <td>$value->babys</td>
                     <td>$fullname</td>
-                    <td><a href='../supplier/updateSupplier/$value->id' class='btn-outlined-green'>Details</a></td>
+                    <td><a href='../voedselpakket/overzichtPakketten/$value->id' class='btn-outlined-green'>Details</a></td>
                 </tr>";
             }
         }
@@ -52,45 +52,35 @@ class VoedselPakket extends controller
         $this->view('voedselpakket/index', $data);
     }
 
-    public function createSupplier()
+    public function overzichtPakketten($id)
     {
-        // Checks if there is a POST method
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // It sanitizes the input
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $this->model->CreateSupplier($_POST);
-            // Sends the user back to the order index page 
-            header("Location:" . URLROOT . "/supplier/index");
-        }
         // Else it shows the page 
-        else {
 
-            $this->view('supplier/createSupplier');
+        $records = $this->model->getVoedselPakkettenById($id);
+        $rows = '';
+
+        foreach ($records as $value) {
+            // Bouwt de tabel inhoud
+            $rows .= "
+            <tr>
+                <td>$value->pakketnummer</td>
+                <td>$value->datumsamengesteld</td>
+                <td>$value->datumuitgifte</td>
+                <td>$value->status</td>
+                <td>4</td>
+                <td><a href='/voedselpakket/wijzigStatus/$value->id' class='btn-outlined-green'>Wijzig Status</a></td>
+            </tr>";
         }
+        $data = [
+            'rows' => $rows,
+            'gezinNaam' => $records[0]->naam,
+            'omschrijving' => $records[0]->omschrijving
+        ];
+        $this->view("voedselpakket/overzichtPakketten", $data);
     }
 
-    public function updateSupplier($id = null)
+    public function wijzigStatus($id)
     {
-        // Checks if there is a POST method
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // It sanitizes the input
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $this->model->UpdateSupplier($_POST);
-            // Sends the user back to the order index page 
-            header("Location:" . URLROOT . "/supplier/index");
-        }
-        // Else it shows the page 
-        else {
-            $row = $this->model->getSupplierById($id);
-            $data = [
-                'row' => $row
-            ];
-            $this->view("supplier/updateSupplier", $data);
-        }
-    }
-    public function deleteSupplier($id)
-    {
-        $this->model->deleteSupplier($id);
-        header("Location: " . URLROOT . "/supplier/index");
+        $this->view("voedselpakket/wijzigStatus");
     }
 }

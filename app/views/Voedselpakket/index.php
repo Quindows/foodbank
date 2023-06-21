@@ -36,5 +36,4 @@
     </div>
 </div>
 
-<?= var_dump($data['naam']); ?>
 <?php require(APPROOT . '/views/includes/Footer.php'); ?>

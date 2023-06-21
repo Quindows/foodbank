@@ -59,7 +59,7 @@ class Klant extends Controller
         }
         // This is the data I will pass to the index page
         $data = [
-            'title' => 'Overzicht Uitslag',
+            'title' => 'Overzicht Klanten',
             'date' => $date,
             'rows' => $rows
         ];

@@ -99,4 +99,21 @@ class LeverancierModel
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function updateProduct($post, $id)
+    {
+        var_dump($post['datum_']);
+
+        try
+        {
+            $this->db->query('UPDATE `product`		
+                                SET Houdbaarheidsdatum = :datum
+                                WHERE Id = 1;');
+            $this->db->bind(':id', $id, PDO::PARAM_INT);
+            $this->db->bind(':datum', $post['datum_'], PDO::PARAM_STR); 
+            return $this->db->execute();
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

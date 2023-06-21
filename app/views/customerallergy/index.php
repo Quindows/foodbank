@@ -3,9 +3,16 @@
 
 <div class="grid">
     <h3 class="text-align-center col-6-lg">Overview of families with allergies</h3>
-    <form class="container col-6-lg" action="<?= URLROOT; ?>/reservering/index" method="post">
-        <input class="mr-3" type="date" name="date" id="date" value="">
-        <input class="btn-primary" type="submit" value="Tonen">
+    <form class="container col-6-lg" action="<?= URLROOT; ?>/customerallergy/index" method="post">
+        <select name="value">
+            <option name="allergy" value="Gluten">Gluten</option>
+            <option name="allergy" value="Pindas">Pindas</option>
+            <option name="allergy" value="Schaaldieren">Schaaldieren</option>
+            <option name="allergy" value="Hazelnoten">Hazelnoten</option>
+            <option name="allergy" value="Lactose">Lactose</option>
+            <option name="allergy" value="Soja">Soja</option>
+        </select>
+        <input class="btn-primary" type="submit" name="btn-sumbit" value="Toon gezinnen">
     </form>
 
     <div class="container fd-c col-12-lg ai-fs">

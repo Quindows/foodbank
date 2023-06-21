@@ -1,0 +1,44 @@
+@use 'sass:math';
+
+$font-utilities: (
+    "font-size":(
+        "prefix": "font",
+        "values": (
+            "sm": $font-size-sm,
+            "md": $base-font-size,
+            "lg": $font-size-lg,
+            "xl": $font-size-xl,
+            "xxl": $font-size-xxl,
+        ),
+    ),
+    // "font-weight":(
+    //     "prefix": "font-weight",
+    //     "values": (
+    //         "sm": $font-size-sm,
+    //         "md": $base-font-size,
+    //         "lg": $font-size-lg,
+    //         "xl": $font-size-xl,
+    //         "xxl": $font-size-xxl,
+    //     ),
+    // ),
+);
+
+// generate utility classes
+
+@each $property, $map in $font-utilities{
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $key, $val in $values{
+        @if($key == "default"){
+            .#{$prefix}{
+                #{$property}: $val;
+            }
+        }
+        @else{
+            .#{$prefix}-#{$key}{
+                #{$property}:  $val;
+            }
+        }
+    }
+}

@@ -1,0 +1,107 @@
+@use 'sass:math';
+
+$display-utilities: (
+    "display":(
+        "prefix": "display",
+        "values": (
+            "b": block,
+            "f": flex,
+            "g": grid,
+            "i": inline,
+            "i-b": inline-block,
+            "n": none,
+        ),
+    ),
+    "flex-direction":(
+        "prefix": "fd",
+        "values": (
+            "r": row,
+            "c": column,
+        ),
+    ),
+    "flex-wrap":(
+        "prefix": "fw",
+        "values": (
+            "nw": nowrap,
+            "w": wrap,
+        ),
+    ),
+    "align-content":(
+        "prefix": "ac",
+        "values": (
+            "c": center,
+            "fs": flex-start,
+            "fe": flex-end,
+            "sa": space-around,
+            "sb": space-between,
+            "st": stretch,
+        ),
+    ),
+    "justify-content":(
+        "prefix": "jc",
+        "values": (
+            "c": center,
+            "fs": flex-start,
+            "fe": flex-end,
+            "sa": space-around,
+            "sb": space-between,
+            "se": space-evenly,
+        ),
+    ),
+    "align-items":(
+        "prefix": "ai",
+        "values": (
+            "c": center,
+            "fs": flex-start,
+            "fe": flex-end,
+            "st": stretch,
+        ),
+    ),
+    "justify-items":(
+        "prefix": "ji",
+        "values": (
+            "c": center,
+            "fs": start,
+            "fe": end,
+            "st": stretch,
+        ),
+    ),
+    "justify-self":(
+        "prefix": "js",
+        "values": (
+            "c": center,
+            "fs": start,
+            "fe": end,
+            "st": stretch,
+        ),
+    ),
+    "align-self":(
+        "prefix": "as",
+        "values": (
+            "c": center,
+            "fs": flex-start,
+            "fe": flex-end,
+            "st": stretch,
+        ),
+    ),
+);
+
+// generate utility classes
+
+@each $property, $map in $display-utilities{
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $key, $val in $values{
+        @if($key == "default"){
+            .#{$prefix}{
+                #{$property}: $val !important;
+            }
+        }
+        @else{
+            .#{$prefix}-#{$key}{
+                #{$property}:  $val !important;
+            }
+        }
+    }
+}

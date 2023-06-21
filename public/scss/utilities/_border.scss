@@ -1,0 +1,35 @@
+@use 'sass:math';
+
+$border-utilities: (
+    "border-radius":(
+        "prefix": "br",
+        "values": (
+            "default": $base-border-radius,
+            "none": 0,
+            "xs": math.div($base-border-radius, 4),
+            "sm": math.div($base-border-radius, 2),
+            "lg": $base-border-radius * 2,
+            "full": 50%,
+        ),
+    ),
+);
+
+// generate utility classes
+
+@each $property, $map in $border-utilities{
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $key, $val in $values{
+        @if($key == "default"){
+            .#{$prefix}{
+                #{$property}: $val;
+            }
+        }
+        @else{
+            .#{$prefix}-#{$key}{
+                #{$property}:  $val;
+            }
+        }
+    }
+}

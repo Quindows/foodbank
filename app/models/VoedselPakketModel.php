@@ -14,24 +14,29 @@ class VoedselPakketModel
     {
         // error catcher
         try {
-            // Database query voor reservation overzicht
             $this->db->query('SELECT 
-                            per.Voornaam as voornaam,
-                            per.Tussenvoegsel as tussenvoegsel,
-                            per.Achternaam as achternaam,
-                            res.Datum as datum,
-                            res.AantalUren as aantalUren,
-                            res.BeginTijd as beginTijd,
-                            res.EindTijd as eindTijd,
-                            res.AantalVolwassen as volwassenen,
-                            res.AantalKinderen as kinderen
-                        from reservering res
-                        inner join persoon per
-                        on per.Id = res.PersoonId
-                        where res.PersoonId = :Id
-                        and res.Datum >= :Datum;');
-            $this->db->bind(':Id', $id, PDO::PARAM_INT);
-            $this->db->bind(':Datum', $datum, PDO::PARAM_STR);
+                                gez.Id as id,
+                                gez.Naam as naam,
+                                gez.Omschrijving as omschrijving,
+                                gez.AantalVolwassenen as volwassenen,
+                                gez.AantalKinderen as kinderen,
+                                gez.AantalBabys as babys,
+                                per.Voornaam as voornaam,
+                                per.Tussenvoegsel as tussenvoegsel,
+                                per.Achternaam as achternaam,
+                                etw.naam
+                                
+                            from gezin gez
+                            inner join persoon per
+                            on gez.Id = per.GezinId
+                            inner join eetwenspergezin epg
+                            on gez.Id = epg.GezinId
+                            inner join eetwens etw
+                            on etw.Id = epg.EetwensId
+                            where (per.IsVertegenwoordiger = 1) and (etw.Naam = :Eetwens)
+                            ');
+            $this->db->bind(':Eetwens', $eetwens, PDO::PARAM_STR);
+
             return $this->db->resultSet();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

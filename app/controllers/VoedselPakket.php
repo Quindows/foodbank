@@ -10,7 +10,7 @@ class VoedselPakket extends controller
     public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $records = $this->model->getVoedselPakkettenByEetwens();
+            $records = $this->model->getVoedselPakkettenByEetwens($_POST['Eetwens']);
         } else {
             $records = $this->model->getVoedselPakketten();
         }

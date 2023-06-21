@@ -20,7 +20,9 @@ class Leverancier extends controller{
         // checkt of er leveranciers zijn
         if($records == null)
         {
-            $rows .= '<h2>Er zijn geen leveranciers bekent van het geselecteerde leverancierstype</h2>';
+            $rows .= '<div class="error">
+                        <p>Er zijn geen leveranciers bekent van het geselecteerde leverancierstype</p>
+                    </div>';
         } else {
             // insert de data in elke row van de tabel
             foreach($records as $value)

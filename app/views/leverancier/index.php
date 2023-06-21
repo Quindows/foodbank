@@ -27,5 +27,4 @@
         </tbody>
     </table>
 </div>
-
 <?php require(APPROOT . '/views/includes/Footer.php');?>

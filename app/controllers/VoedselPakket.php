@@ -10,7 +10,7 @@ class VoedselPakket extends controller
     public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $records = $this->model->getVoedselPakkettenByEetwens($_POST['Eetwens']);
+            $records = $this->model->getVoedselPakkettenByEetwens($_POST["Eetwens"]);
         } else {
             $records = $this->model->getVoedselPakketten();
         }
@@ -19,7 +19,7 @@ class VoedselPakket extends controller
         $naam = '';
         // Checkt of er Supplier zijn
         if ($records == null) {
-            $rows .= '<h2>Er staan nog geen leveranciers in de database.</h2> ';
+            $rows .= '<tr><td>Er zijn geen gezinnen bekent die de geselecteerde eetwens hebben</td></tr> ';
         } else {
             foreach ($records as $value) {
                 // Bouwt de tabel inhoud

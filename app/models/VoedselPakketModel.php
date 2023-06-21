@@ -10,7 +10,7 @@ class VoedselPakketModel
         $this->db = new Database();
     }
 
-    public function getVoedselPakkettenByIdEetwens($eetwens)
+    public function getVoedselPakkettenByEetwens($eetwens)
     {
         // error catcher
         try {
@@ -24,7 +24,7 @@ class VoedselPakketModel
                                 per.Voornaam as voornaam,
                                 per.Tussenvoegsel as tussenvoegsel,
                                 per.Achternaam as achternaam,
-                                etw.naam
+                                etw.naam as eetwens
                                 
                             from gezin gez
                             inner join persoon per

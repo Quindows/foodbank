@@ -17,7 +17,7 @@ class AllergyModel
             // Database query voor reservation overzicht
             $this->db->query('SELECT 
                             alle.Id as Id,
-                            alle.Name as Name
+                            alle.Allergy as Name
                         from Allergy alle');
             return $this->db->resultSet();
         } catch (PDOException $e) {
@@ -32,7 +32,7 @@ class AllergyModel
             // Database query voor reservation overzicht
             $this->db->query('SELECT 
                             Id,
-                            Name
+                            Allergy
                         from Allergy
                         WHERE Id = :Id');
 
@@ -49,7 +49,7 @@ class AllergyModel
         // error catcher
         try {
             // addScore for Allergies
-            $this->db->query("INSERT INTO Allergy (name
+            $this->db->query("INSERT INTO Allergy (Allergy
                                                 ,isActive
                                                 ,dateCreated)
                                         VALUES (:name
@@ -73,7 +73,7 @@ class AllergyModel
         try {
             //Person query
             $this->db->query("UPDATE Allergy
-            SET Name = :Name,
+            SET Allergy = :Name,
                 dateUpdated = :dateUpdated
             WHERE Id = :Id");
 

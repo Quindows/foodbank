@@ -18,8 +18,7 @@ class Klant extends Controller
             }
             $rows = '';
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $postcode = '';
-            $result = $this->model->getKlantenByPostcode($postcode);
+            $result = $this->model->getKlantenByPostcode($_POST['type']);
             // This if statement looks at the content of $result
             // If $result is empty, It will display red text saying there is no data yet
             // Else it will display the data from $result
@@ -55,11 +54,9 @@ class Klant extends Controller
                         </tr>";
             }
         }
-        $postcode = '';
         // This is the data I will pass to the index page
         $data = [
             'title' => 'Overzicht Klanten',
-            'postcode' => $postcode,
             'rows' => $rows
         ];
 

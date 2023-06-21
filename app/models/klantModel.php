@@ -40,7 +40,7 @@ class KlantModel
         }
     }
 
-    public function getKlantenByPostcode($postcode)
+    public function getKlantenByPostcode($result)
     {
         try {
             $this->db->query("SELECT 	Gez.Naam as GezinNaam,
@@ -61,9 +61,9 @@ class KlantModel
                                         INNER JOIN Contact as Con on cpg.ContactId = Con.Id
                                         INNER JOIN Persoon as Per on Per.GezinId = Gez.Id
                                         WHERE Per.IsVertegenwoordiger = 1
-                                        AND Con.Postcode = :postcode;");
+                                        AND Con.Postcode = :result;");
 
-            $this->db->bind(':postcode', $postcode, PDO::PARAM_STR);
+            $this->db->bind(':result', $result, PDO::PARAM_STR);
             $result = $this->db->resultSet();
             return $result;
         } catch (PDOException $e) {

@@ -7,8 +7,15 @@
         <h3><?= $data['title'] ?></h3>
 
         <form class="container" action="<?= URLROOT; ?>klant/index" method="post">
-            <input class="col-3" type="string" name="string" id="postcode" value="<?= $data["postcode"]; ?>">
-            <input class="col-3 ml-2 btn-outlined-grey" type="submit" value="Toon klanten">
+            <select name="type" id="type">
+                <option value="1">Selecteer Postcode</option>
+                <option value="5271TH">5271TH</option>
+                <option value="5271ZE">5271ZE</option>
+                <option value="5271TJ">5271TJ</option>
+                <option value="5271ZH">5271ZH</option>
+            </select>
+            <button class="col-3 ml-2 btn-outlined-grey" type="submit">Toon klanten</button>
+
         </form>
         <!-- Score Table -->
         <table class="table table-striped">

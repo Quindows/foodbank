@@ -1,6 +1,6 @@
 <?php
 
-class SupplierModel
+class VoedselPakketModel
 {
 
     private $db;
@@ -10,7 +10,7 @@ class SupplierModel
         $this->db = new Database();
     }
 
-    public function getSuppliersByIdDate($id, $datum)
+    public function getVoedselPakkettenByIdEetwens($eetwens)
     {
         // error catcher
         try {
@@ -38,23 +38,26 @@ class SupplierModel
         }
     }
 
-    public function getSuppliers()
+    public function getVoedselPakketten()
     {
         // error catcher
         try {
             $this->db->query('SELECT 
-                                sup.Id as id,
-                                sup.CompanyName as companyname,
-                                sup.Address as address,
-                                sup.Name as contactperson,
-                                sup.Email as email,
-                                sup.Phonenumber as phonenumber,  
-                                del.TimeOfDeparture as nextdelivery
-                            from supplier sup
-                            left join deliverysupplier dsu
-                            on sup.Id = dsu.SupplierId
-                            left join delivery del
-                            on del.Id = dsu.DeliveryId');
+                                gez.Id as id,
+                                gez.Naam as naam,
+                                gez.Omschrijving as omschrijving,
+                                gez.AantalVolwassenen as volwassenen,
+                                gez.AantalKinderen as kinderen,
+                                gez.AantalBabys as babys,
+                                per.Voornaam as voornaam,
+                                per.Tussenvoegsel as tussenvoegsel,
+                                per.Achternaam as achternaam
+                                
+                            from gezin gez
+                            inner join persoon per
+                            on gez.Id = per.GezinId
+                            where per.IsVertegenwoordiger = 1
+                            ');
             return $this->db->resultSet();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

@@ -10,5 +10,5 @@
 </head>
 <div class="mt-2 ml-5">
     <H1>Homepage voedselbank maaskantje</H1>
-    <a href=""></a>
+    <a href="../voedselpakket/index.php" class="text-blue" style="text-decoration: underline;">Overzicht voedselpakketten</a>
 </div>

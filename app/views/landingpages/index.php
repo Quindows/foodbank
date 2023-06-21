@@ -1,3 +1,3 @@
-<h1><?= $data['title']; ?></h1>
+<h1>Homepage veodselbank maaskantje</h1>
 
-<p><?= $data['test'] ?></p>
+<a href="/leverancier/index">Overzicht Leveranciers</a>

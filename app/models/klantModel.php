@@ -70,4 +70,27 @@ class KlantModel
             echo "Error: " . $e->getMessage();
         }
     }
+
+     //This method will get the information per id from the database
+     public function getKlantById($id)
+     {
+         $this->db->query("SELECT    per.id,
+                                     per.firstname,
+                                     per.infix, 
+                                     per.lastname, 
+                                     gam.personId,
+                                     gam.id,
+                                     sco.totalPoints,
+                                     gam.reservationId
+                                     from Person as per 
+                                     INNER join game as gam on gam.personId = per.id
+                                     LEFT join score as sco on gam.id = sco.gameId
+                                     WHERE gam.reservationId = :id;");
+ 
+ 
+         $this->db->bind(':id', $id, PDO::PARAM_INT);
+         $result = $this->db->resultSet();
+ 
+         return $result;
+     }
 }

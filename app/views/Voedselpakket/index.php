@@ -29,8 +29,9 @@
             <tbody>
                 <?= $data['rows']; ?>
             </tbody>
-            <!-- <a class="btn-grey" href="../supplier/createSupplier">Add supplier</a> -->
         </table>
+        <a class="btn-blue" href="../landingspages/index" style="margin-left: 64rem;">Home</a>
+
     </div>
 </div>
 

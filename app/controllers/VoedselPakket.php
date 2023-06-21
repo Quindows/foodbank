@@ -19,7 +19,7 @@ class VoedselPakket extends controller
         $naam = '';
         // Checkt of er Supplier zijn
         if ($records == null) {
-            $rows .= '<tr><td>Er zijn geen gezinnen bekent die de geselecteerde eetwens hebben</td></tr> ';
+            $rows .= '<tr><td>Er zijn geen gezinnen bekent die de geselecteerde eetwens hebben<td></tr> ';
         } else {
             foreach ($records as $value) {
                 // Bouwt de tabel inhoud
@@ -37,7 +37,7 @@ class VoedselPakket extends controller
                     <td>$value->kinderen</td>
                     <td>$value->babys</td>
                     <td>$fullname</td>
-                    <td><a href='../supplier/updateSupplier/$value->id' class='btn-outlined-green'>Edit</a></td>
+                    <td><a href='../supplier/updateSupplier/$value->id' class='btn-outlined-green'>Details</a></td>
                 </tr>";
             }
         }

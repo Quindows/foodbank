@@ -9,11 +9,13 @@ class LeverancierModel
         $this->db = new Database();
     }
 
-    public function getLeveranciers(){
+    public function getLeveranciers()
+    {
         // error handler
         try
         {
-            $this->db->query('SELECT 	lev.Naam 			as Naam,
+            $this->db->query('SELECT 	lev.Id              as Id,
+                                        lev.Naam 			as Naam,
                                         lev.ContactPersoon 	as ContactPersoon,
                                         con.Email			as Email,
                                         con.Mobiel			as Mobiel,
@@ -31,11 +33,13 @@ class LeverancierModel
         }
     }
 
-    public function getLeveranciersByType($result){
+    public function getLeveranciersByType($result)
+    {
         // error handler
         try
         {
-            $this->db->query('SELECT 	lev.Naam 			as Naam,
+            $this->db->query('SELECT 	lev.Id              as Id,
+                                        lev.Naam 			as Naam,
                                         lev.ContactPersoon 	as ContactPersoon,
                                         con.Email			as Email,
                                         con.Mobiel			as Mobiel,
@@ -51,6 +55,47 @@ class LeverancierModel
             return $this->db->resultSet();
         }
         catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getProductByLeverancier($id)
+    {
+        // error handler
+        try
+        {
+            $this->db->query('SELECT 	lev.Id,
+                                        pro.Naam,
+                                        pro.SoortAllergie,
+                                        pro.Barcode,
+                                        pro.HoudbaarheidsDatum
+                                from `ProductperLeverancier` ppl
+                                inner join `leverancier` lev
+                                    on lev.Id = ppl.LeverancierId
+                                Inner join `product` pro
+                                    on pro.Id = ppl.ProductId
+                                where lev.Id = :id;');
+            $this->db->bind(':id', $id, PDO::PARAM_INT);
+            return $this->db->resultSet();
+        }
+        catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getLeverancierById($id)
+    {
+        // error handler
+        try
+        {
+            $this->db->query('SELECT	Naam,
+                                        LeveranciersNummer,
+                                        LeveranciersType
+                                from leverancier
+                                Where Id = :id;');
+            $this->db->bind(':id', $id, PDO::PARAM_INT);
+            return $this->db->single();
+        } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }

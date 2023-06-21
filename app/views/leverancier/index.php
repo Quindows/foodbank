@@ -1,6 +1,6 @@
 <?= require(APPROOT . '/views/includes/Navbar.php');?>
 <div>
-    <div class="reserveringTitel">
+    <div class="LeverancierFilter">
         <form action="<?= URLROOT; ?>leverancier/index" method="post">
             <select name="type" id="type">
                 <option value="1">Selecteer Leveranciertype</option>
@@ -21,6 +21,7 @@
             <th>Mobiel</th>
             <th>Leverancier nummer</th>
             <th>Leverancier type</th>
+            <th>Product details</th>
         </thead>
         <tbody>
             <?= $data['rows']; ?>

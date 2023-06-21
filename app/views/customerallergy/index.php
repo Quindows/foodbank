@@ -4,7 +4,8 @@
 <div class="grid">
     <h3 class="text-align-center col-6-lg">Overview of families with allergies</h3>
     <form class="container col-6-lg" action="<?= URLROOT; ?>/customerallergy/index" method="post">
-        <select name="value">
+        <select name="allergy" id="allergy">
+        <option name="allergy" value="1">Selecteer allergie</option>
             <option name="allergy" value="Gluten">Gluten</option>
             <option name="allergy" value="Pindas">Pindas</option>
             <option name="allergy" value="Schaaldieren">Schaaldieren</option>

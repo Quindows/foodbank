@@ -18,14 +18,14 @@ class Klant extends Controller
             }
             $rows = '';
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $date = $_POST["date"];
-            // $result = $this->model->getKlantenByPostcode($Postcode);
+            $postcode = '';
+            $result = $this->model->getKlantenByPostcode($postcode);
             // This if statement looks at the content of $result
             // If $result is empty, It will display red text saying there is no data yet
             // Else it will display the data from $result
             if ($result == null) {
                 $rows .= "<tr>
-                            <td class='text-red'>Er is geen uitslag beschikbaar voor deze geselecteerde datum</td>
+                            <td class='text-red'>Er zijn geen klanten die de geslecteerde postcode hebben</td>
                         </tr>";
             } else {
                 foreach ($result as $info) {
@@ -36,7 +36,7 @@ class Klant extends Controller
                             <td>$info->Mobiel</td>
                             <td>$info->Adres</td>
                             <td>$info->Woonplaats</td>
-                            <td><a href='../score/reservationRead/$info->CpgId' class='btn-outlined-primary'>Klanten informatie</a></td>
+                            <td><a href='../klant/klantUpdate/$info->CpgId' class='btn-outlined-primary'>Klanten informatie</a></td>
                         </tr>";
                 }
             }
@@ -51,16 +51,15 @@ class Klant extends Controller
                             <td>$info->Mobiel</td>
                             <td>$info->Adres</td>
                             <td>$info->Woonplaats</td>
-                            <td><a href='../score/reservationRead/$info->CpgId' class='btn-outlined-primary'>Klanten informatie</a></td>
+                            <td><a href='../klant/klantUpdate/$info->CpgId' class='btn-outlined-primary'>Klanten informatie</a></td>
                         </tr>";
             }
-            //This gets the information for the date
-            $date = date("Y-m-d");
         }
+        $postcode = '';
         // This is the data I will pass to the index page
         $data = [
             'title' => 'Overzicht Klanten',
-            'date' => $date,
+            'postcode' => $postcode,
             'rows' => $rows
         ];
 

@@ -6,9 +6,9 @@
         <!-- Page Title -->
         <h3><?= $data['title'] ?></h3>
 
-        <form class="container" action="<?= URLROOT; ?>/score/index" method="post">
-            <input class="col-3" type="date" name="date" id="date" value="<?= $data["date"]; ?>">
-            <input class="col-3 ml-2 btn-outlined-grey" type="submit" value="Tonen">
+        <form class="container" action="<?= URLROOT; ?>klant/index" method="post">
+            <input class="col-3" type="string" name="string" id="postcode" value="<?= $data["postcode"]; ?>">
+            <input class="col-3 ml-2 btn-outlined-grey" type="submit" value="Toon klanten">
         </form>
         <!-- Score Table -->
         <table class="table table-striped">

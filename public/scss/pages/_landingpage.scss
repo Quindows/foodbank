@@ -1,0 +1,529 @@
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+li,
+a {
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+header {
+  object-fit: cover;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0% 5%;
+  z-index: 3;
+}
+.scroll {
+  height: 10%;
+  background-color: rgb(0, 0, 0);
+}
+header.collapse {
+  display: none;
+}
+
+#logo {
+  width: 8rem;
+  height: 8rem;
+  cursor: pointer;
+  margin: 0 auto;
+  @media screen and (max-width: 385px) {
+    height: 5rem;
+    width: 5rem;
+  }
+}
+.nav__links {
+  list-style: none;
+  object-fit: cover;
+}
+.nav__links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+.nav__links li a,
+.lft {
+  object-fit: cover;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  color: white;
+  transition: all 0.3 ease 0s;
+}
+.nav__links li a:hover {
+  color: rgb(240, 184, 82);
+}
+
+ul.split {
+  float: left;
+  margin: 0;
+}
+.lft {
+  padding: 0% 1rem;
+}
+.lft:hover {
+  color: rgb(240, 184, 82);
+}
+
+div#hamburger-menu.hide {
+  display: none;
+}
+div#hamburger-menu {
+  position: fixed;
+  top: 0%;
+  z-index: 1;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #f8f8f8;
+  display: block;
+  transition: 0.3s;
+  ion-icon {
+    color: white;
+  }
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+div.small-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  padding-right: 1rem;
+  background-color: black;
+  z-index: 10;
+  span {
+    padding: 1rem 2rem;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    ion-icon {
+      font-size: 64px;
+    }
+  }
+  img {
+    height: 20%;
+    width: 20%;
+    padding-top: 1rem;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+section {
+  background-color: #ffffff;
+  height: 100vh;
+  margin: 0;
+  padding: 2.5rem 4rem;
+  h1 {
+    font-family: "Oswald", sans-serif;
+    font-size: 36px;
+    margin: 0;
+    padding: 6rem 0 4rem 0;
+    color: black;
+  }
+}
+
+section:nth-of-type(2n) {
+  background-color: #ccc;
+}
+
+section:last-of-type {
+  height: 100vh;
+}
+
+section.landing_section {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  div.background_image {
+    width: 100%;
+    height: 100%;
+    img {
+      object-fit: cover;
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+    }
+    div.image_cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.411);
+    }
+  }
+  div.text {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    padding-top: 20%;
+    justify-content: center;
+    align-items: center;
+    div.content {
+      position: absolute;
+      text-align: center;
+      // z-index: 1;
+      h1 {
+        font-size: 64px;
+        color: white;
+        @media screen and (max-width: 780px) {
+          font-size: 30px;
+        }
+      }
+      div.button {
+        button {
+          padding: 1rem;
+          cursor: pointer;
+          background-color: rgb(240, 184, 82);
+          border: none;
+          border-radius: 10px;
+          a {
+            color: white;
+          }
+        }
+        :hover {
+          background-color: rgb(240, 164, 24);
+        }
+      }
+    }
+  }
+}
+
+section#about {
+  background: white;
+  @media screen and (max-width: 385px) {
+    height: 100rem;
+    padding: 0;
+  }
+  div.over_rocambolesque {
+    @media screen and (max-width: 385px) {
+      display: flex;
+      flex-direction: column;
+    }
+    display: flex;
+    padding-top: 6rem;
+    flex-direction: row;
+    div.image_content {
+      @media screen and (max-width: 385px) {
+        padding: 0 0 0 1.3rem;
+      }
+      img {
+        object-fit: cover;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        margin: 0rem 5rem 2rem 10rem;
+        @media screen and (max-width: 385px) {
+          margin: 0;
+          // padding: 0 3rem;
+          width: 340px;
+          height: 340px;
+        }
+      }
+    }
+    div.rocambolesque_info {
+      @media screen and (max-width: 385px) {
+        padding: 0 2rem;
+        width: 100%;
+      }
+      h2 {
+        font-family: "Francois One", sans-serif;
+        font-size: 32px;
+        margin: 0;
+      }
+      div.content {
+        max-width: 80%;
+        p {
+          @media screen and (max-width: 385px) {
+            font-size: 16px;
+          }
+          font-family: "Open Sans", sans-serif;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  div.bar {
+    @media screen and (max-width: 385px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    display: flex;
+    padding-top: 3rem;
+    flex-direction: row;
+    div.bar_info {
+      display: flex;
+      flex-direction: column;
+      max-width: 80%;
+      padding-left: 10%;
+      h2 {
+        font-family: "Francois One", sans-serif;
+        font-size: 32px;
+        margin: 0;
+      }
+      div.content {
+        max-width: 90%;
+        p {
+          @media screen and (max-width: 385px) {
+            font-size: 16px;
+          }
+          font-family: "Open Sans", sans-serif;
+          font-size: 24px;
+        }
+      }
+    }
+    div.image_bar {
+      @media screen and (max-width: 385px) {
+        padding: 0 1.4rem 2rem 2.5rem;
+      }
+      img {
+        object-fit: cover;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        margin: 0rem 15rem 2rem 5rem;
+        @media screen and (max-width: 385px) {
+          margin: 0;
+          width: 300px;
+          height: 300px;
+        }
+      }
+    }
+  }
+}
+
+section#openingstijden {
+  height: 90rem;
+  padding: 0;
+  @media screen and (max-width: 385px) {
+    height: 65rem;
+  }
+  div.banner {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 8.5rem;
+    padding-top: 5rem;
+    img {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      @media screen and (max-width: 385px) {
+        height: 50%;
+      }
+    }
+    div.image_cover {
+      position: absolute;
+      width: 100%;
+      height: 12.4rem;
+      background-color: rgba(0, 0, 0, 0.411);
+      @media screen and (max-width: 385px) {
+        height: 4.3rem;
+      }
+    }
+    div.title {
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      @media screen and (max-width: 385px) {
+        top: 0%;
+        left: 10%;
+      }
+      h1 {
+        position: absolute;
+        color: white;
+      }
+    }
+  }
+  div.logo {
+    position: relative;
+    text-align: center;
+    top: 15%;
+    right: 0%;
+    z-index: 1;
+    @media screen and (max-width: 385px) {
+      top: 5%;
+      left: 0%;
+      z-index: 0;
+    }
+    img {
+      border: 5px solid rgb(104, 0, 0);
+      border-radius: 50%;
+    }
+  }
+  div.content {
+    position: relative;
+    height: 60%;
+    width: 80%;
+    top: 8%;
+    margin: 0 auto;
+    text-align: center;
+    // background-color: rgb(255, 238, 192);
+    background-image: linear-gradient(
+      to right,
+      rgb(248, 233, 146),
+      rgb(255, 185, 185)
+    );
+    border: 5px solid rgb(104, 0, 0);
+    border-radius: 10px;
+    z-index: 0;
+    @media screen and (max-width: 385px) {
+      height: 60%;
+      margin: 0rem 2.2rem;
+      top: 0%;
+      position: static;
+
+    }
+    div.title {
+      padding-top: 6rem;
+      @media screen and (max-width: 385px) {
+        padding-top: 2.3rem;
+      }
+      h2 {
+        font-family: "Francois One", sans-serif;
+        font-size: 32px;
+        @media screen and (max-width: 385px) {
+          font-size: 24px;
+          padding: 0.2rem;
+        }
+      }
+    }
+    div.line {
+      width: 90%;
+      height: 5px;
+      margin: 0 auto;
+      background-color: black;
+    }
+    div.grid-container {
+      display: grid;
+      text-align: left;
+      justify-content: space-between;
+      margin: 1rem 11rem;
+      column-gap: 0rem;
+      row-gap: 0rem;
+      grid-template-columns: auto auto;
+      @media screen and (max-width: 385px) {
+        justify-content: space-between;
+        width: 80%;
+        margin: 1rem auto;
+        // column-gap: 4rem;
+      }
+      div.grid-item {
+        @media screen and (max-width: 385px) {
+          padding: 0;
+          width: 10rem;
+        }
+        padding: 0rem 3rem 0 0;
+        // box-shadow: 1px 1px 5px rgb(179, 179, 179);
+        h1 {
+          font-family: "Francois One", sans-serif;
+          font-size: 32px;
+          margin: 1rem 0rem;
+          padding: 0;
+          @media screen and (max-width: 385px) {
+            font-size: 20px;
+          }
+        }
+        h3 {
+          font-family: "Francois One", sans-serif;
+          font-size: 32px;
+          margin: 1rem 0rem;
+          padding: 0;
+          @media screen and (max-width: 385px) {
+            font-size: 13px;
+            width: 100%;
+          }
+        }
+        h4 {
+          font-family: "Francois One", sans-serif;
+          font-size: 24px;
+          margin: 0rem 0rem 1rem 0rem;
+          padding: 0;
+          @media screen and (max-width: 385px) {
+            font-size: 13px;
+          }
+        }
+        h5 {
+          font-family: "Francois One", sans-serif;
+          font-size: 20px;
+          margin: 0;
+          padding: 0;
+          @media screen and (max-width: 385px) {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Footer
+footer {
+  width: 100%;
+  height: 20vh;
+  background-color: rgb(22, 22, 22);
+  div.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      margin: 0;
+      padding: 3rem 0rem 1rem 0rem;
+      color: white;
+    }
+    div.media-links {
+      ion-icon {
+        padding: 0rem 1rem;
+        font-size: 32px;
+        color: white;
+      }
+    }
+  }
+}

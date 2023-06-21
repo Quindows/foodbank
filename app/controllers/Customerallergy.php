@@ -4,28 +4,26 @@ class CustomerAllergy extends controller
 {
     public function __construct()
     {
-        $this->model = $this->model('CustomerAllergyModel');
+        $this->CustomerAllergyModel = $this->model('CustomerAllergyModel');
     }
 
     public function index()
     {
 
 
-        $records = $this->model->getCustomerAllergies();
+        $result = $this->CustomerAllergyModel->getCustomerAllergies();
         $rows = '';
 
-        if ($records == null) {
-            $rows .= '<h2>Geen allergieën</h2>';
-        } else {
-            foreach ($records as $value) {
-                // bouwt de tabel inhoud
-                $rows .= "
-                <tr>
-                    <td>$value->FamilyName</td>
-                    <td>$value->ExtraWish</td>
-                    <td>$value->AllergyName</td>
-                </tr>";
-            }
+        foreach ($result as $info) {
+            $rows .= "<tr>
+                        <td>$info->Name</td>
+                        <td>$info->FamilyDescription</td>
+                        <td>$info->AmountOfAdults</td>
+                        <td>$info->AmountOfKids</td>
+                        <td>$info->AmountOfBabies</td>
+                        <td>$info->RepresentativeName</td>
+                        <td><a href='../customer/updateCustomer/$info->Id' class='btn-outlined-primary'>Bekijken</a></td>
+                        </tr>";
         }
 
         // array voor alle data om mee te sturen naar de view

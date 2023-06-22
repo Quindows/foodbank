@@ -74,7 +74,8 @@ class VoedselPakket extends controller
         $data = [
             'rows' => $rows,
             'gezinNaam' => $records[0]->naam,
-            'omschrijving' => $records[0]->omschrijving
+            'omschrijving' => $records[0]->omschrijving,
+            'aantalpersonen' => $records[0]->totaalaantalpersonen
         ];
         $this->view("voedselpakket/overzichtPakketten", $data);
     }

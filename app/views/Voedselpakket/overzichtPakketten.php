@@ -6,6 +6,24 @@
 
         </div>
 
+        <table class="table table-striped">
+
+            <tbody>
+                <tr>
+                    <td>Naam:</td>
+                    <td><?= $data['gezinNaam']; ?></td>
+                </tr>
+                <tr>
+                    <td>Overzicht:</td>
+                    <td><?= $data['omschrijving']; ?></td>
+                </tr>
+                <tr>
+                    <td>Totaal aantal personen:</td>
+                    <td><?= $data['aantalpersonen']; ?></td>
+                </tr>
+                <!-- <?= $data['rows']; ?> -->
+            </tbody>
+        </table>
 
         <table class="table table-striped">
             <thead>

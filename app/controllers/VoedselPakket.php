@@ -68,20 +68,39 @@ class VoedselPakket extends controller
                 <td>$value->datumuitgifte</td>
                 <td>$value->status</td>
                 <td>4</td>
-                <td><a href='/voedselpakket/wijzigStatus/$value->id' class='btn-outlined-green'>Wijzig Status</a></td>
+                <td><a href='/voedselpakket/wijzigStatus/$value->pakketid' class='btn-outlined-green'>Wijzig Status</a></td>
             </tr>";
         }
+        // Gets all the information for the page ready
         $data = [
             'rows' => $rows,
             'gezinNaam' => $records[0]->naam,
             'omschrijving' => $records[0]->omschrijving,
             'aantalpersonen' => $records[0]->totaalaantalpersonen
         ];
+        // This gets us to the right page with the required data
         $this->view("voedselpakket/overzichtPakketten", $data);
     }
 
-    public function wijzigStatus($id)
+
+    public function wijzigStatus($id = null)
     {
-        $this->view("voedselpakket/wijzigStatus");
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            echo "test";
+            $records = $this->model->updateStatus($id);
+
+
+            $this->view("voedselpakket/wijzigStatus", $data);
+        } else {
+            $records = $this->model->getVoedselPakketById($id);
+
+            // Gets all the information for the page ready
+            $data = [
+                'status' => $records->status,
+            ];
+
+            // This gets us to the right page with the required data
+            $this->view("voedselpakket/wijzigStatus", $data);
+        }
     }
 }

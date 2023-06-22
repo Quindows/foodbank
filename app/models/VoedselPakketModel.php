@@ -56,7 +56,8 @@ class VoedselPakketModel
                                 vdp.PakketNummer as pakketnummer,
                                 vdp.DatumSamenstelling as datumsamengesteld,
                                 vdp.DatumUitgifte as datumuitgifte,
-                                vdp.Status as status    
+                                vdp.Status as status,
+                                vdp.Id as pakketid  
 
                             from gezin gez
                             inner join voedselpakket vdp
@@ -94,6 +95,27 @@ class VoedselPakketModel
                             where per.IsVertegenwoordiger = 1
                             ');
             return $this->db->resultSet();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getVoedselPakketById($id)
+    {
+
+        // error catcher
+        try {
+            $this->db->query('SELECT 
+                            Status as status,
+                            Id as id,
+                            PakketNummer as pakketnummer    
+
+                            from voedselpakket
+                            where (Id = :Id)
+                            ');
+            $this->db->bind(':Id', $id, PDO::PARAM_INT);
+
+            return $this->db->single();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

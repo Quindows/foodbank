@@ -102,7 +102,8 @@ class VoedselPakket extends controller
             $data = [
                 'status' => $records->status,
                 'id' => $records->id,
-                'gezinId' => $records->gezinid
+                'gezinId' => $records->gezinid,
+                'isActief' => $records->isactief
             ];
 
             // This gets us to the right page with the required data

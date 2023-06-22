@@ -6,15 +6,18 @@
         </div>
 
         <form action="<?= URLROOT; ?>/voedselpakket/wijzigStatus" method="post" style="margin-left : 20rem;">
-            <select id="status" name="status" style="margin-right: 1rem;">
+            <select id="status" name="status" style="margin-right: 1rem;" <?php if ($data['isActief'] == 0) : ?> disabled <?php endif ?>>
                 <option value="NietUitgereikt" <?php if ($data['status'] == "NietUitgereikt") : ?> selected="selected" <?php endif ?>>Niet Uitgereikt</option>
                 <option value="Uitgereikt" <?php if ($data['status'] == "Uitgereikt") : ?> selected="selected" <?php endif ?>>Uitgereikt</option>
             </select>
             <input class="mb-2" type="hidden" name="id" value="<?= $data['id']; ?>">
             <input class="mb-2" type="hidden" name="gezinId" value="<?= $data['gezinId']; ?>">
 
-            <input type="submit" class="text-white btn-grey" value="Wijzig status voedselpakket">
+            <input type="submit" class="text-white btn-grey" value="Wijzig status voedselpakket" <?php if ($data['isActief'] == 0) : ?> disabled <?php endif ?>>
+
         </form>
+        <?php if ($data['isActief'] == 0) : ?> <p>Dit gezin is niet meer ingeschreven bij de voedselbank en daarom kan er geen voedselpakket
+                worden uitgereikt</p> <?php endif ?>
 
 
         <a class="btn-blue" href="../index" style="margin-left: 64rem;">Terug</a>
@@ -23,5 +26,4 @@
 
     </div>
 </div>
-<?= var_dump($data); ?>
 <?php require(APPROOT . '/views/includes/Footer.php'); ?>

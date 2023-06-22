@@ -1,4 +1,4 @@
-@mixin btn($bg-color: #e2e2e2){
+@mixin btn($bg-color: #e2e2e2) {
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
@@ -8,31 +8,74 @@
     margin: 0;
 }
 
-.btn{
+.btn {
     @include btn;
 }
 
-@each $key, $val in $colors{
-    .btn-#{$key}{
+@each $key,
+$val in $colors {
+    .btn-#{$key} {
         @include btn($val);
         border: 0;
-        &:hover{
+
+        &:hover {
             background-color: lighten($val, 5);
         }
     }
-    .btn-outlined-#{$key}{
+
+    .btn-outlined-#{$key} {
         @include btn(white);
         border: $base-border-thickness solid $val;
-        &:hover{
+
+        &:hover {
             background-color: $val;
         }
     }
-    .btn-complement-#{$key}{
+
+    .btn-complement-#{$key} {
         @include btn($val);
         color: light-comp($val);
-        &:hover{
+
+        &:hover {
             color: $val;
             background-color: light-comp($val);
+        }
+    }
+
+    @if($val !=black and $val !=white) {
+
+        // light variations
+
+        @for $i from 1 through 9 {
+            .btn-#{$key}-light-#{$i} {
+                @include btn($val);
+                color: mix(white, $val, $i * 10);
+            }
+
+            .btn-hover-#{$key}-light-#{$i} {
+                @include btn($val);
+
+                &:hover {
+                    color: mix(white, $val, $i * 10);
+                }
+            }
+        }
+
+        //dark variations
+
+        @for $i from 1 through 9 {
+            .btn-#{$key}-dark-#{$i} {
+                @include btn($val);
+                color: mix(black, $val, $i * 10);
+            }
+
+            .btn-hover-#{$key}-dark-#{$i} {
+                @include btn($val);
+
+                &:hover {
+                    color: mix(black, $val, $i * 10);
+                }
+            }
         }
     }
 }

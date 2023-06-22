@@ -1,17 +1,17 @@
-<?php 
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
-    // naam van je database
-    define('DB_NAME', 'foodbank-dag3'); 
+<?php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+// naam van je database
+    define('DB_NAME', 'foodbank-Quintin'); 
 
-    //het padd naar de app map
-    define('APPROOT', dirname(dirname(__FILE__)));
+//het padd naar de app map
+define('APPROOT', dirname(dirname(__FILE__)));
 
     // de url van de website
     define('URLROOT', 'http://foodbank.local/');
 
     // naam van de website
-    define('SITENAME', 'foodank');
+    define('SITENAME', 'foodbank');
     
 ?>

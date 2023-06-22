@@ -120,7 +120,7 @@ class Leverancier extends controller{
 
                     // CHECKT OF HET IS GELUKT
                     if ($result) {
-						$data['notification'] = "<p class='text-red bg-red-light-8 col-12-lg'>Product aangepast!</p>";
+						$data['notification'] = "<p class='text-green bg-green-light-8 col-12-lg'>Product aangepast!</p>";
 						header("Refresh: 3; url=" . URLROOT . "leverancier/index");
 					} else {
                          

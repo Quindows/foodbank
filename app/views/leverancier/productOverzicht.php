@@ -20,9 +20,10 @@
             <?= $data['rows']; ?>
         </tbody>
     </table>
-    <div class="col-6-lg align-left">
-        <a class="button-blue" href="/leverancier/index">terug</a> 
-        <a class="button-blue" href="/landingpages/index">home</a>
+    <div class="col-7-lg"></div>
+    <div class="col-5-lg align-left">
+        <a class="btn-primary text-white" href="/leverancier/index">terug</a> 
+        <a class="btn-primary text-white" href="/landingpages/index">home</a>
     </div>
 </div>
 

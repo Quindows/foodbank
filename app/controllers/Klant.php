@@ -35,7 +35,7 @@ class Klant extends Controller
                             <td>$info->Mobiel</td>
                             <td>$info->Adres</td>
                             <td>$info->Woonplaats</td>
-                            <td><a href='../klant/klantUpdate/$info->CpgId' class='btn-outlined-primary'>Klanten informatie</a></td>
+                            <td><a href='../klant/updateKlant/$info->CpgId' class='btn-outlined-primary'>Klant details</a></td>
                         </tr>";
                 }
             }
@@ -63,14 +63,23 @@ class Klant extends Controller
         $this->view('klant/index', $data);
     }
 
-    public function updateKlant($id = null)
+    public function updateKlant($klantId = null)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $this->model->updateKlant($_POST);
-            header("Location:" . URLROOT . "/klant/index");
+            header("Location:" . URLROOT . "klant/index");
         } else {
-            $row = $this->model->getKlantById($id);
+            $row = $this->model->getKlantenById($klantId);
+
+            // Check if the $row variable is null or not
+            if ($row === null) {
+                // Handle the case where the data is not found
+                echo "<h3 class='text-red'>Data not found.</h3>";
+                header("Refresh:3; url=" . URLROOT . "klant/index");
+                return;
+            }
+
             $data = [
                 'title' => 'Klant details wijzigen',
                 'row' => $row

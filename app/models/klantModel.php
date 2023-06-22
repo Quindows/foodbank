@@ -72,42 +72,45 @@ class KlantModel
     }
 
     //This method will get the information per id from the database
-    public function getKlantById($id)
+    public function getKlantenById($klantId)
     {
+
         // error catcher
         try {
             // Database query voor reservation overzicht
             $this->db->query("SELECT 	
-                                Gez.Id as GezId, 
-                                Per.Voornaam, 
-                                Per.Tussenvoegsel,
-                                Per.Achternaam,
-                                Per.Geboortedatum,
-                                Per.TypePersoon,
-                                Per.GezinId,
-                                Per.IsVertegenwoordiger,
-                                Con.Straat,
-                                Con.Huisnummer,
-                                Con.Toevoeging,
-                                Con.Postcode,
-                                Con.Woonplaats,
-                                Con.Email,
-                                Con.Mobiel,
-                                Con.Id as ConId,
-                                Cpg.Id as CpgId,
-                                Cpg.GezinId as CpgGezId,
-                                Cpg.ContactId as CpgConId
-                                FROM ContactPerGezin as Cpg
-                                INNER JOIN Gezin as Gez on cpg.GezinId = Gez.Id
-                                INNER JOIN Contact as Con on cpg.ContactId = Con.Id
-                                INNER JOIN Persoon as Per on Per.GezinId = Gez.Id
-                                WHERE Cpg.Id = :id
-                                AND Per.IsVertegenwoordiger = 1;");
+        Gez.Id as GezId, 
+        Per.Voornaam, 
+        Per.Tussenvoegsel,
+        Per.Achternaam,
+        Per.Geboortedatum,
+        Per.TypePersoon,
+        Per.GezinId,
+        Per.IsVertegenwoordiger,
+        Con.Straat,
+        Con.Huisnummer,
+        Con.Toevoeging,
+        Con.Postcode,
+        Con.Woonplaats,
+        Con.Email,
+        Con.Mobiel,
+        Con.Id as ConId,
+        Cpg.Id as CpgId,
+        Cpg.GezinId as CpgGezId,
+        Cpg.ContactId as CpgConId
+        FROM ContactPerGezin as Cpg
+        INNER JOIN Gezin as Gez on cpg.GezinId = Gez.Id
+        INNER JOIN Contact as Con on cpg.ContactId = Con.Id
+        INNER JOIN Persoon as Per on Per.GezinId = Gez.Id
+        WHERE Cpg.Id = :klantId
+        AND Per.IsVertegenwoordiger = 1;");
 
-            $this->db->bind(':Id', $id, PDO::PARAM_INT);
+            $this->db->bind(':klantId', $klantId, PDO::PARAM_INT);
+
             return $this->db->single();
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            // echo "<h3 class='text-red'>Het wijzigen is niet gelukt, probeer het opnieuw.</h3>";
+            // header("Refresh:2; url=" . URLROOT . "/klant/index");
         }
     }
 }

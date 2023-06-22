@@ -5,8 +5,8 @@
         <h1 class="color-green">Wijzig product</h1>
             <form class="grid" action="<?= URLROOT; ?>leverancier/productWijzigen/<?= $data['id'] ?>" method="post" class="formcolumn">
                 <h3 class="col-6-lg">Optiepakket:</h3>
-                <input class="col-6-lg" id="datum" name="datum "type="date">
-                <button class="col-6-lg button-grey"type="sumbit">Wijzigen HoudbaarheidsDatum</button>
+                <input class="col-6-lg" id="datum" name="datum" type="date">
+                <button class="col-6-lg button-grey" type="sumbit">Wijzigen HoudbaarheidsDatum</button>
                 <div class="col-6-lg align-left">
                     <a class="button-blue" href="/leverancier/index">terug</a> 
                     <a class="button-blue" href="/landingpages/index">home</a>

@@ -64,7 +64,7 @@ class LeverancierModel
         // error handler
         try
         {
-            $this->db->query('SELECT 	lev.Id,
+            $this->db->query('SELECT 	pro.Id,
                                         pro.Naam,
                                         pro.SoortAllergie,
                                         pro.Barcode,
@@ -102,15 +102,15 @@ class LeverancierModel
 
     public function updateProduct($post, $id)
     {
-        var_dump($post['datum_']);
-
+        var_dump($post['datum']);
+        
         try
         {
             $this->db->query('UPDATE `product`		
-                                SET Houdbaarheidsdatum = :datum
-                                WHERE Id = 1;');
+                                SET Houdbaarheidsdatum = :datum 
+                                WHERE Id = :id');
             $this->db->bind(':id', $id, PDO::PARAM_INT);
-            $this->db->bind(':datum', $post['datum_'], PDO::PARAM_STR); 
+            $this->db->bind(':datum', $post['datum'], PDO::PARAM_STR);
             return $this->db->execute();
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();

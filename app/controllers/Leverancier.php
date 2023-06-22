@@ -121,7 +121,7 @@ class Leverancier extends controller{
                     // CHECKT OF HET IS GELUKT
                     if ($result) {
 						$data['notification'] = "Product aangepast!";
-						header("Refresh: 3; url=" . URLROOT . "leverancier/proOverzicht");
+						header("Refresh: 3; url=" . URLROOT . "leverancier/index");
 					} else {
                          
 						$data['notification'] = "er is iets mis gegaan, probeer opnieuw.";

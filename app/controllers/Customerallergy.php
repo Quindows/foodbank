@@ -76,18 +76,53 @@ class CustomerAllergy extends controller
         $this->view('customerallergy/familyIndex', $data);
     }
 
-    public function updateFamilyAllergy($Id = null)
+
+    public function updateFamilyAllergy($id = null)
     {
-        $row = $this->CustomerAllergyModel->getFamilyAllergyById($Id);
-
-
-        $result = $this->CustomerAllergyModel->getFamilyAllergies($Id);
-
-
         $data = [
-            'row' => $row];
+            'notification' => '',
+            'id' => $id
+        ];
 
-        // redirect naar de view
-        $this->view('customerallergy/updateFamilyAllergy', $data);
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            try{
+                // filtert voor sql injecties
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+
+                //VALIDATIE VAN DE INPUT
+                $data = $this->validateAllergy($data, $_POST);
+
+                if (strlen($data["notification"]) < 1) {    
+                    // VOERT DE UPDATE UIT
+                    $result = $this->CustomerAllergyModel->updateFamilyAllergy($_POST, $id);
+                    
+                    // CHECKT OF HET IS GELUKT
+                    if ($result) {
+                        $data['notification'] = "<h4 class='col-12-lg text-green bg-green-light-8 p-2'>Allergie gewijzigd!</h4>";
+                        header("Refresh: 3; url=" . URLROOT . "customerallergy/index");
+                    } else {
+
+                        $data['notification'] = "er is iets mis gegaan, probeer opnieuw.";
+                    }
+                }
+            } catch (PDOException $e) {
+
+                echo $e;
+                $data['notification'] = "er is iets mis gegaan, probeer opnieuw.";
+            }
+        }
+        else {
+            $data['notification'] = ' ';
+        }
+        $this->view('customerAllergy/updateFamilyAllergy', $data);
+    }
+
+    public function validateAllergy($data, $post)
+    {
+        if ($post['allergy'] == 'Pindas')
+        {
+            $data['notification'] = "<h4 class='col-12-lg text-red bg-red-light-8 p-2'>Voor het wijzigen van deze allergie wordt geadviseerd eerst een arts te raadplegen vanwege een hoog risico op een anafylactisch shock</h4>";
+         }
+         return($data);
     }
 }

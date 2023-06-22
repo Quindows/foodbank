@@ -2,9 +2,9 @@
 
 <div class="grid">
     <h3 class="col-12-lg">Wijzig Allergie</h3>
-
+    <?= $data['notification']?>
     <div class="container fd-c col-12-lg ai-fs">
-    <form class="container col-6-lg" action="<?= URLROOT; ?>/customerallergy/FamilyIndex/<?= $data['Id'] ?>" method="post">
+    <form class="container col-6-lg" action="<?= URLROOT; ?>/customerallergy/updateFamilyAllergy/<?= $data['id'] ?>" method="post">
         <select name="allergy" id="allergy">
         <option name="allergy" value="1">Selecteer allergie</option>
             <option name="allergy" value="Gluten">Gluten</option>

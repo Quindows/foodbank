@@ -1,7 +1,7 @@
-drop database if exists `foodbank`;
-create database `foodbank`;
+drop database if exists `foodbank1`;
+create database `foodbank1`;
 
-use `foodbank`;
+use `foodbank1`;
 
 -- Supplier
 drop table if exists `supplier`;

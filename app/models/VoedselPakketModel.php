@@ -122,12 +122,21 @@ class VoedselPakketModel
 
     public function updateStatus($data)
     {
+        $datum = '';
+        if ($data['status'] == "Uitgereikt") {
+            $datum = date('Y-m-d');
+        } else {
+            $datum = null;
+        }
+
         $this->db->query("UPDATE voedselpakket
                         set     Status = :status,
+                                DatumUitgifte = :datumuitgifte,
                                 DatumGewijzigd = :datumgewijzigd
                         where Id = :id;");
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind(':status', $data['status'], PDO::PARAM_STR);
+        $this->db->bind(':datumuitgifte', $datum, PDO::PARAM_STR);
         $this->db->bind(':datumgewijzigd', date('Y-m-d H:i:s'), PDO::PARAM_STR);
 
 

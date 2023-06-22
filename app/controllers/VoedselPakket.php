@@ -93,8 +93,8 @@ class VoedselPakket extends controller
             $this->model->updateStatus($_POST);
 
             // Sends the user back to the order index page 
-            echo "Test";
-            header("refresh:5;url=" . URLROOT . "/voedselpakket/overzichtPakketten/$gezinId");
+            echo "De wijziging is doorgevoerd";
+            header("refresh:3;url=" . URLROOT . "/voedselpakket/overzichtPakketten/$gezinId");
         } else {
             $records = $this->model->getVoedselPakketById($id);
 

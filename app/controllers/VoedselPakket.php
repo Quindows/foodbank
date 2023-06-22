@@ -89,16 +89,20 @@ class VoedselPakket extends controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // It sanitizes the input
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $gezinId = $_POST['gezinId'];
             $this->model->updateStatus($_POST);
-            header("refresh:5;url=" . URLROOT . "/voedselpakket/index");
+
             // Sends the user back to the order index page 
+            echo "Test";
+            header("refresh:5;url=" . URLROOT . "/voedselpakket/overzichtPakketten/$gezinId");
         } else {
             $records = $this->model->getVoedselPakketById($id);
 
             // Gets all the information for the page ready
             $data = [
                 'status' => $records->status,
-                'id' => $records->id
+                'id' => $records->id,
+                'gezinId' => $records->gezinid
             ];
 
             // This gets us to the right page with the required data

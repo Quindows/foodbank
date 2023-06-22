@@ -107,7 +107,8 @@ class VoedselPakketModel
         try {
             $this->db->query('SELECT 
                             Status as status,
-                            Id as id
+                            Id as id,
+                            GezinId as gezinid
                             from voedselpakket
                             where (Id = :Id)
                             ');

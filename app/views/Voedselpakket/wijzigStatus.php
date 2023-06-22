@@ -11,6 +11,8 @@
                 <option value="Uitgereikt" <?php if ($data['status'] == "Uitgereikt") : ?> selected="selected" <?php endif ?>>Uitgereikt</option>
             </select>
             <input class="mb-2" type="hidden" name="id" value="<?= $data['id']; ?>">
+            <input class="mb-2" type="hidden" name="gezinId" value="<?= $data['gezinId']; ?>">
+
             <input type="submit" class="text-white btn-grey" value="Wijzig status voedselpakket">
         </form>
 

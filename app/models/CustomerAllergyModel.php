@@ -134,11 +134,19 @@ class CustomerAllergyModel
         }
     }
 
-    public function updateFamilyAllergy($Id)
+    public function updateFamilyAllergy($post, $id)
     {
         try{
-
-
+            
+            $this->db->query('UPDATE allergy as alg
+                                INNER JOIN allergyPerPerson AS app ON alg.Id  = app.AllergyId
+                                INNER JOIN person AS per ON  app.PersonId = per.Id
+                                SET allergy = :allergy
+                                WHERE per.Id = :id;');
+                                
+            $this->db->bind(':id', $id, PDO::PARAM_INT);
+            $this->db->bind(':allergy', $post['allergy'], PDO::PARAM_STR);
+            return $this->db->execute();
 
         }catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

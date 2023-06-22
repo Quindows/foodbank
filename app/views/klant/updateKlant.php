@@ -17,16 +17,16 @@
                 <br>
                 <input class="mb-2" type="date" name="geboortedatum" value="<?= $data["row"]->Geboortedatum; ?>" required>
                 <br>
-                <select name="type" id="type">
-                    <option value="Manager">Manager</option>
-                    <option value="Medewerker">Medewerker</option>
-                    <option value="Vrijwilliger">Vrijwilliger</option>
-                    <option value="Klant">Klant</option>
+                <select name="typepersoon" id="type">
+                    <option value="Manager" <?php if ($data['row']->TypePersoon == 'Manager') : ?> selected="selected" <?php endif ?>>Manager</option>
+                    <option value="Medewerker" <?php if ($data['row']->TypePersoon == 'Medewerker') : ?> selected="selected" <?php endif ?>>Medewerker</option>
+                    <option value="Vrijwilliger" <?php if ($data['row']->TypePersoon == 'Vrijwilliger') : ?> selected="selected" <?php endif ?>>Vrijwilliger</option>
+                    <option value="Klant" <?php if ($data['row']->TypePersoon == 'Klant') : ?> selected="selected" <?php endif ?>>Klant</option>
                 </select>
                 <br>
-                <select name="type" id="type">
-                    <option value="0">Nee</option>
-                    <option value="1">Ja</option>
+                <select name="isvertegenwoordiger" id="type">
+                    <option value='0' <?php if ($data['row']->IsVertegenwoordiger == '0') : ?> selected="selected" <?php endif ?>>Nee</option>
+                    <option value='1' <?php if ($data['row']->IsVertegenwoordiger == '1') : ?> selected="selected" <?php endif ?>>Ja</option>
                 </select>
                 <br>
                 <input class="mb-2" type="text" name="straat" value="<?= $data["row"]->Straat; ?>" required>
@@ -43,16 +43,13 @@
                 <br>
                 <input class="mb-2" type="text" name="mobiel" value="<?= $data["row"]->Mobiel; ?>" required>
                 <br>
-                <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->GezId; ?>">
-                <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->ConId; ?>">
-                <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->CpgId; ?>">
-                <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->CpgGezId; ?>">
-                <input class="mb-2" type="hidden" name="id" value="<?= $data["row"]->CpgConId; ?>">
+                <input class="mb-2" type="hidden" name="perId" value="<?= $data["row"]->PerId; ?>">
+                <input class="mb-2" type="hidden" name="conId" value="<?= $data["row"]->ConId; ?>">
                 <br>
                 <input class="btn-outlined-green" type="submit" value="Wijzigen">
 
 
             </form>
-            </table>
+        </table>
     </div>
 </div>

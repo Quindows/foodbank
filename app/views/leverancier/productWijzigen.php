@@ -6,13 +6,15 @@
             <form class="grid" action="<?= URLROOT; ?>leverancier/productWijzigen/<?= $data['id'] ?>" method="post" class="formcolumn">
                 <h3 class="col-6-lg">Optiepakket:</h3>
                 <input class="col-6-lg" id="datum" name="datum" type="date">
-                <button class="col-6-lg button-grey" type="sumbit">Wijzigen HoudbaarheidsDatum</button>
-                <div class="col-6-lg align-left">
-                    <a class="button-blue" href="/leverancier/index">terug</a> 
-                    <a class="button-blue" href="/landingpages/index">home</a>
+                <?= $data['notification'] ?>
+                <div class="col-12-lg display-f jc-sb ai-c">
+                    <button class="col-6-lg button-grey" type="sumbit">Wijzigen HoudbaarheidsDatum</button>
+                    <div>                        
+                        <a class="btn-primary text-white" href="/leverancier/index">terug</a> 
+                        <a class="btn-primary text-white" href="/landingpages/index">home</a>
+                    </div>
                 </div>
             </form>
-        <p><?= $data['notification'] ?></p>
         <div class="col-2-lg"></div>
     </div>
 

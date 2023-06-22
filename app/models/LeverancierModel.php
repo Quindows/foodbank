@@ -100,10 +100,16 @@ class LeverancierModel
         }
     }
 
+    public function getHoudbaarheidsDatum($id){
+        $this->db->query('SELECT Id, Houdbaarheidsdatum
+                        from product 
+                        where Id = :id');
+        $this->db->bind(':id', $id, PDO::PARAM_INT);
+        return $this->db->single();
+    }
+
     public function updateProduct($post, $id)
-    {
-        var_dump($post['datum']);
-        
+    {    
         try
         {
             $this->db->query('UPDATE `product`		

@@ -112,7 +112,7 @@ class Leverancier extends controller{
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
 
                 // VALIDATIE VAN DE INPUT
-                // $data = $this->validatiePakketOptie($data, $id, $_POST);
+                $data = $this->validatieProductWijzigen($data, $_POST, $id);
 
                 if (strlen($data["notification"]) < 1) {
                     // VOERT DE UPDATE UIT
@@ -120,7 +120,7 @@ class Leverancier extends controller{
 
                     // CHECKT OF HET IS GELUKT
                     if ($result) {
-						$data['notification'] = "Product aangepast!";
+						$data['notification'] = "<p class='text-red bg-red-light-8 col-12-lg'>Product aangepast!</p>";
 						header("Refresh: 3; url=" . URLROOT . "leverancier/index");
 					} else {
                          
@@ -138,4 +138,17 @@ class Leverancier extends controller{
         }
         $this->view('leverancier/productWijzigen', $data);
     }
+
+           // VALIDATIE METHOD VOOR UPDATE
+           public function validatieProductWijzigen($data, $post, $id){
+            // checkt in het database of er kinderen aanwezig zijn
+            $result = $this->model->getHoudbaarheidsDatum($id);
+            $date=date_create($result->Houdbaarheidsdatum);
+            date_add($date,date_interval_create_from_date_string("7 days"));
+            $date2 = date_format($date,"Y-m-d");
+
+            if ($post['datum'] > $date2)
+                $data['notification'] = "<p class='text-red col-12-lg'>De houdbaarheidsdatum mag met maximaal 7 dagen worden verlengd</p>";
+            return($data);
+        }
 }

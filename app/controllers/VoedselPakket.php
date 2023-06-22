@@ -85,18 +85,20 @@ class VoedselPakket extends controller
 
     public function wijzigStatus($id = null)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo "test";
-            $records = $this->model->updateStatus($id);
-
-
-            $this->view("voedselpakket/wijzigStatus", $data);
+        // Checks if there is a POST method
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // It sanitizes the input
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $this->model->updateStatus($_POST);
+            header("refresh:5;url=" . URLROOT . "/voedselpakket/index");
+            // Sends the user back to the order index page 
         } else {
             $records = $this->model->getVoedselPakketById($id);
 
             // Gets all the information for the page ready
             $data = [
                 'status' => $records->status,
+                'id' => $records->id
             ];
 
             // This gets us to the right page with the required data

@@ -107,9 +107,7 @@ class VoedselPakketModel
         try {
             $this->db->query('SELECT 
                             Status as status,
-                            Id as id,
-                            PakketNummer as pakketnummer    
-
+                            Id as id
                             from voedselpakket
                             where (Id = :Id)
                             ');
@@ -123,24 +121,15 @@ class VoedselPakketModel
 
     public function updateStatus($data)
     {
-        // $this->db->query("UPDATE Supplier
-        //                 set     companyname = :companyname,
-        //                         address = :address,
-        //                         name = :name,
-        //                         email = :email,
-        //                         phonenumber = :phonenumber,
-        //                         dateUpdated = :dateUpdated
-
-        //                 where Id = :id;");
-        // $this->db->bind('id', $data['id'], PDO::PARAM_INT);
-        // $this->db->bind(':companyname', $data['companyName'], PDO::PARAM_STR);
-        // $this->db->bind(':address', $data['address'], PDO::PARAM_STR);
-        // $this->db->bind(':name', $data['contactName'], PDO::PARAM_STR);
-        // $this->db->bind(':email', $data['email'], PDO::PARAM_STR);
-        // $this->db->bind(':phonenumber', $data['phoneNumber'], PDO::PARAM_STR);
-        // $this->db->bind(':dateUpdated', date('Y-m-d H:i:s'), PDO::PARAM_STR);
+        $this->db->query("UPDATE voedselpakket
+                        set     Status = :status,
+                                DatumGewijzigd = :datumgewijzigd
+                        where Id = :id;");
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind(':status', $data['status'], PDO::PARAM_STR);
+        $this->db->bind(':datumgewijzigd', date('Y-m-d H:i:s'), PDO::PARAM_STR);
 
 
-        // return $this->db->execute();
+        return $this->db->execute();
     }
 }

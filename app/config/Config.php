@@ -3,7 +3,7 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 // naam van je database
-define('DB_NAME', 'foodbank');
+define('DB_NAME', 'foodbank-Claudia');
 
 //het padd naar de app map
 define('APPROOT', dirname(dirname(__FILE__)));
